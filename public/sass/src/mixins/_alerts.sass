@@ -1,0 +1,10 @@
+@mixin alert-variant($background, $text-color)
+  background-color: $background
+  border-color: darken(adjust-hue($background, -10), 5%)
+  color: $text-color
+
+  hr
+    border-top-color: darken(adjust-hue($background, -10), 5%)
+
+  .alert-link
+    color: darken($text-color, 10%)

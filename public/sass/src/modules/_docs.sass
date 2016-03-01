@@ -1,0 +1,106 @@
+.doc-overview
+  .add-doc
+    width: 150px
+    height: 212px
+    border: 2px dashed $lightgrey
+    +border-radius(4px)
+    text-align: center
+    margin: 0 $x-large $x-large 0
+    color: lighten($grey, 25)
+    &:hover
+      color: $ht-blue
+      border-color: $ht-blue
+      cursor: hand
+      cursor: pointer
+
+.doc
+  text-align: center
+  width: 150px
+  margin: 0 $x-large $x-large 0
+  position: relative
+  font-size: $small
+
+  .doc-action
+    color: red
+
+  .doc-thumb
+    width: 150px
+    height: 212px
+    border: 1px solid $lightgrey
+    display: block
+    +border-radius(4px)
+    margin-bottom: $xx-small
+
+  .doc-topic
+    color: $black
+    font-weight: $normal
+
+  .doc-meta
+    color: lighten($grey, 10)
+
+.doc-big
+  width: 100%
+  border: 1px solid $lightgrey
+
+.doc-details
+  .doc-detail
+    margin: $regular 0
+    color: $black
+    font-weight: $normal
+
+// MAGNIFIERJS
+.magnifier-thumb-wrapper
+  position: relative
+  display: block
+  top: 0
+  left: 0
+
+.magnifier-lens
+  position: absolute
+  border: solid 1px #ccc
+  z-index: 1000
+  top: 0
+  left: 0
+  overflow: hidden
+  background: whitesmoke!important
+  opacity: 0.9
+
+.magnifier-loader
+  position: absolute
+  top: 0
+  left: 0
+  border: solid 1px #ccc
+  color: #fff
+  text-align: center
+  background: rgba(50, 50, 50, 0.5)
+  z-index: 1000
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F323232,endColorstr=#7F323232)"
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F323232,endColorstr=#7F323232)
+
+.magnifier-loader-text
+  font: 13px Arial
+  margin-top: 10px
+
+.magnifier-large
+  position: absolute
+  z-index: 100
+
+.magnifier-preview
+  padding: 0
+  // width: 150px
+  height: 600px
+  position: absolute
+  overflow: hidden
+
+.magnifier-preview img
+  position: absolute
+  top: 0
+  left: 0
+
+.opaque
+  opacity: .5
+  filter: alpha(opacity=50)
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50)
+
+.hidden
+  display: none

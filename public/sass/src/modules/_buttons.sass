@@ -1,0 +1,74 @@
+.btn, .btn:visited
+  padding: $x-small $small
+  display: inline-block
+  +border-radius(6px)
+  background-color: transparent
+  font-size: $small
+  font-weight: 300
+  text-decoration: none
+  transition: 0.3s ease
+  cursor: pointer
+  outline: none
+  text-transform: uppercase
+  font-weight: 500
+  line-height: $heading-leading
+  border: 0
+  -webkit-appearance: none
+
+  &:hover
+    text-decoration: none !important
+    border: 0
+
+  &:focus
+    outline: 0
+
+.btn-red, .btn-red:visited
+  background-color: $red
+  color: rgba(black, 0.5)
+
+  &:hover
+    background-color: darken($red, 6%)
+    color: rgba(black, 0.5)
+
+.btn-green, .btn-green:visited
+  background-color: darken($green, 8)
+  color: rgba(black, 0.5)
+
+  &:hover
+    background-color: darken($green, 16)
+    color: rgba(black, 0.5)
+
+.btn-blue, .btn-blue:visited
+  background-color: $ht-blue
+  color: white
+
+  &:hover
+    background-color: darken($ht-blue, 6%)
+    color: white
+
+.btn-grey, .btn-grey:visited
+  background-color: darken($lightgrey, 6%)
+  color: white
+
+  &:hover
+    background-color: darken($lightgrey, 16%)
+    color: white
+
+.btn-block
+  display: block
+  text-align: center
+  width: 100%
+
+.btn-oval
+  +border-radius(50%)
+
+.add-card-btn
+  display: block
+  background-color: white
+  border: 1px solid $lightgrey
+  margin-top: 18px
+  text-transform: none
+  color: $ht-blue
+  font-size: $regular
+  +border-radius(16px)
+  text-align: center

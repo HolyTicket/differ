@@ -1,0 +1,42 @@
+.bar-cashier
+	background-color: $ht-blue
+	.cashier-header
+		+display-flex
+		+justify-content(space-between)
+		background-color: darken($ht-blue, 30%)
+		color: white
+		padding: 14px
+
+		.cashier-header-left
+		.cashier-header-center
+		.cashier-header-right
+
+	.cashier-main
+		margin-top: 60px
+		+display-flex
+
+		.products
+			width: 75%
+
+			.product-items
+				padding: 10px
+				+display-flex
+				+flex-wrap(wrap)
+				height: 100%
+
+				.product-item-wrapper
+					padding: 10px
+					min-width: 25%
+					max-width: 25%
+					+flex(1)
+					+display-flex
+
+					.product-item
+						background: white
+						+flex(1)
+						+border-radius(4px)
+						text-align: center
+						padding: $xx-small
+
+		.cashier-sidebar
+			width: 25%

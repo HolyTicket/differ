@@ -1,0 +1,75 @@
+.menu-wrapper
+  display: none
+
+.menu-trigger:hover > .menu-wrapper, .menu-wrapper:hover,
+.menu-wrapper-active
+  position: absolute
+  right: 0
+  display: inline-block
+  z-index: 101
+  padding-top: 12px
+
+  .menu
+    +border-radius(6px)
+    background-color: white
+    color: $grey
+    font-size: $regular
+    height: auto
+    margin-left: 0
+    +box-shadow(#aaa 0px 2px 4px)
+    border-top: 1px solid #ddd
+
+    &:after, &:before
+      bottom: 100%
+      // right: 9px
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      pointer-events: none
+      margin-bottom: -13px
+
+    &:after
+      border-color: rgba(255, 255, 255, 0)
+      border-bottom-color: #ffffff
+      border-width: 8px
+      margin-left: -8px
+      right: 10px
+
+    &:before
+      border-color: rgba(221, 221, 221, 0)
+      border-bottom-color: #ddd
+      border-width: 9px
+      margin-left: -9px
+      right: 9px
+
+  .menu-item
+    border-bottom: 1px solid lighten($lightgrey, 10%)
+    white-space: nowrap
+    text-transform: capitalize
+    &:hover
+      background-color: rgba($ht-blue, 0.1)
+    &:last-child
+      border-bottom: 0
+
+    .menu-link
+      padding: 0 18px
+      font-size: $regular
+      display: block
+      color: $grey
+      line-height: 48px
+      &:hover
+        color: darken($ht-blue, 5%)
+        border: 0
+        border-bottom: 1px solid transparent
+        background-color: transparent /*OLD CSS OVERRIDE*/
+
+    .menu-link-small
+      padding: 0 12px
+      font-size: $small
+      line-height: 36px
+
+
+    .fa
+      margin-right: 6px

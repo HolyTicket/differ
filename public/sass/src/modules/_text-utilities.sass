@@ -1,0 +1,98 @@
+.centered
+  text-align: center
+
+.align-right
+  text-align: right
+
+.align-left
+  text-align: left
+
+.align-center
+  text-align: center
+
+.afterthought
+  color: lighten($grey, 20%)
+  margin: 1em 0
+
+.bold
+  font-weight: $bold
+
+.italic
+  font-style: italic
+
+.label
+  text-transform: uppercase
+  font-size: $x-small
+  font-weight: $normal
+  display: block
+
+.small-cap-link
+  text-transform: uppercase
+  font-size: $x-small
+  font-weight: $normal
+
+.textual-divider
+  display: table
+  white-space: nowrap
+  margin-bottom: $x-small
+  font-size: $large
+  width: 100%
+  overflow: hidden
+  text-align: center
+  &:before,
+  &:after
+    border-top: 1px solid $lightgrey
+    content: ''
+    display: table-cell
+    position: relative
+    top: 0.8em
+    width: 45%
+  &:before
+    right: 1.5%
+  &:after
+    left: 1.5%
+
+.explanation
+  font-size: $small
+  color: lighten($grey, 30%)
+
+.good-news
+  font-weight: bold
+  color: $darkgreen
+
+.bad-news
+  font-weight: bold
+  color: $darkred
+
+.mark
+  font-size: $x-small
+  font-weight: $bold
+  +border-radius(3px)
+  text-transform: uppercase
+  padding: 0px 4px
+  color: rgba(black, 0.5)
+  border: 1px solid rgba(black, 0.07)
+  line-height: $x-small
+
+.mark-default
+  background-color: $lightgrey
+
+.mark-yellow
+  background-color: $yellow
+
+.mark-green
+  background-color: $green
+
+.mark-red
+  background-color: $red
+
+.badge
+  background: #D76666
+  padding: 0 4px
+  border-radius: $regular
+  border: 1px solid rgba(0,0,0,0.2)
+  top: 3px
+  display: inline
+  position: absolute
+  right: $xx-small
+  font-size: $x-small

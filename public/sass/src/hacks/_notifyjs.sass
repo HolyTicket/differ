@@ -1,0 +1,29 @@
+.notifyjs-corner
+	width: 100%
+	margin: 0 !important
+
+	.notifyjs-wrapper
+		margin: 0 !important
+
+		.notifyjs-container
+			margin: 0 !important
+
+			.notifyjs-bootstrap-base
+				font-weight: 400
+				padding: 0
+				border: 0
+				+border-radius(0)
+				background-repeat: none
+				background-position: 0% 0%
+				text-align: center
+				height: 60px
+				line-height: 60px
+				text-shadow: none
+// MOBILE
+@media #{$mobile}
+	.notifyjs-corner
+		.notifyjs-wrapper
+			.notifyjs-container
+				.notifyjs-bootstrap-base
+					height: 44px
+					line-height: 44px

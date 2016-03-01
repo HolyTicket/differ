@@ -1,0 +1,34 @@
+.kpi-overview
+  margin-bottom: 1em
+  .kpi-row
+    background-color: transparent
+    border: 0
+
+  .kpi-metric
+    padding: 1em 0
+  
+  .kpi-name
+    display: block
+    font-size: $x-small
+    text-transform: uppercase
+    line-height: 1.5em
+    margin-bottom: -6px
+
+  .kpi-number
+    font-size: $x-large
+    font-weight: $normal
+
+.kpi-trend
+  font-size: $x-small
+  font-weight: $bold
+
+.kpi-trend-up
+  color: $darkgreen
+
+.kpi-trend-down
+  color: $darkred
+
+// MOBILE
+@media #{$mobile}
+  .kpi-metric
+    display: block

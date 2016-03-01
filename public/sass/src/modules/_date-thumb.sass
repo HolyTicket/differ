@@ -1,0 +1,39 @@
+// GENERAL
+.date-thumb
+  width: 150px
+  height: 150px
+  +display-flex(flex)
+  +align-items(center)
+  float: left
+  font-size: $small
+  font-weight: $bold
+  color: white
+  text-align: center
+  @include single-text-shadow
+  text-transform: uppercase
+
+  .date
+    margin: 0 auto
+
+  .day
+    font-size: $xxx-large*1.2*1.2
+    line-height: 1em
+
+.card .date-thumb
+  margin: -$regular
+  margin-right: $regular
+
+.sheet .date-thumb
+  margin-right: $regular
+
+// MOBILE
+@media #{$mobile}
+  .card .date-thumb
+    display: none
+
+// TABLET
+
+// DESKTOP
+@media #{$desktop}
+
+  

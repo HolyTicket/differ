@@ -1,0 +1,34 @@
+.step-indicator
+  width: 100%
+  +display-flex(flex)
+  +justify-content(space-between)
+  +flex-direction(row)
+  margin-top: 18px
+
+  .step
+    text-align: center
+    font-weight: $bold
+    text-decoration: none
+
+    .step-number
+      background-color: $lightgrey
+      display: inline-block
+      height: 36px
+      width: 36px
+      @include border-radius(18px)
+      padding-top: 1px
+      color: white
+      font-size: $large
+
+    .step-title
+      margin-top: 6px
+      color: $lightgrey
+      text-transform: uppercase
+      font-size: $small
+
+  .active-step
+    .step-number
+      background-color: $ht-blue
+
+    .step-title
+      color: $ht-blue

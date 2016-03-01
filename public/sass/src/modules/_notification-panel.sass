@@ -1,0 +1,38 @@
+.notification-panel-wrapper
+  display: none
+
+.notification-panel-trigger:hover + .notification-panel-wrapper, .notification-panel-wrapper:hover
+  position: absolute
+  width: 300px
+  padding-top: 60px
+  margin-left: -150px
+  display: inline-block
+  z-index: 101
+
+  .notification-panel
+    +border-bottom-radius(6px)
+    background-color: white
+    color: $grey
+    font-size: $regular
+    height: auto
+    border: 2px solid $ht-blue
+    border-top: 0
+    max-height: 300px
+    overflow-y: scroll
+    overflow-x: hidden
+
+    .notification
+      padding: 12px 18px
+      border-bottom: 1px solid lighten($lightgrey, 10%)
+      &:hover
+        background-color: rgba($ht-blue, 0.1)
+      &:last-child
+        border-bottom: 0
+
+      .notification-link
+        display: block
+        color: $grey
+        &:hover
+          color: darken($ht-blue, 5%)
+          border: 0
+          background-color: transparent /*OLD CSS OVERRIDE*/

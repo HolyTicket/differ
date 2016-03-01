@@ -1,0 +1,25 @@
+.team-presence
+  .shift-input
+    font-size: $small
+    padding: 0 $x-small
+    line-height: $large
+    width: auto
+
+  .presence-actions
+    float: right
+    margin-right: -6px
+
+    .action
+      padding: 0 6px
+      &:hover
+        border: 0
+
+    .present
+      color: $darkgreen
+      &:hover
+        color: darken($darkgreen, 10%)
+
+    .not-present
+      color: $darkred
+      &:hover
+        color: darken($darkred, 10%)

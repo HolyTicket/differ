@@ -1,0 +1,23 @@
+.loading
+  &:before
+    content: "\f110"
+    font-family: FontAwesome
+    animation: fa-spin 1s infinite steps(8)
+    position: absolute
+    left: -20px
+.loading-before
+  &:before
+    left: -20px
+.loading-after
+  &:before
+    content: "\f110"
+    font-family: FontAwesome
+    animation: fa-spin 1s infinite steps(8)
+    position: absolute
+    right: -40px
+
+// MOBILE
+@media #{$mobile}
+  .loading
+    &:before
+      left: 0

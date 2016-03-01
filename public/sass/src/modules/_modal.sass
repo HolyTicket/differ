@@ -1,0 +1,43 @@
+//Overwrite of jQuery modal css
+.modal 
+  width: 100%
+  +border-radius(0)
+  background-color: transparent
+  padding: 0
+  +box-shadow(none)
+
+  a.close-modal
+    position: relative
+    text-indent: 0
+    color: $lightgrey
+    width: auto
+    height: auto
+    background: none
+
+  .modal-close-btn
+    width: 60px
+    height: 60px
+    position: absolute
+    right: 0
+    top: 12px
+    border: 0
+    opacity: 0.5
+    &:hover
+      border: 0
+      opacity: 0.8
+
+.modal-spinner
+  // background: url('/plugins/jquery-modal/spinner.gif') $creme no-repeat center center
+  // padding: $large
+  background-color: rgba($creme, 0.95)
+  +display-flex(flex)
+  +align-items(center)
+  +justify-content(center)
+  height: 100%
+  width: 100%
+  z-index: 101
+  top: 0
+  left: 0
+  margin: 0
+  position: fixed
+  +border-radius(0)

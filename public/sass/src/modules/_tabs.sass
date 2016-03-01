@@ -1,0 +1,37 @@
+.tabs
+  font-weight: $bold
+  font-size: $x-small
+  text-transform: uppercase
+  border-bottom: 1px solid $lightgrey
+  height: 48px
+  margin: $regular 0
+
+  .tab
+    float: left
+    margin-bottom: -1px
+    color: lighten($grey, 40%)
+    padding: 0 $regular
+    line-height: 48px
+    height: 48px
+    transition: all 0.2s ease
+    border: 1px solid transparent
+    border-bottom: 0
+    &:hover
+      color: $black
+      border-bottom: 0
+
+  .active-tab
+    color: $black
+    border: 1px solid $lightgrey
+    border-bottom: 0
+    background-color: white
+    +border-top-radius(4px)
+
+  .action-tab
+    text-transform: uppercase
+    font-size: $small
+    color: $ht-blue
+    float: right
+    margin-right: 0
+    &:hover
+      color: darken($ht-blue, 10%)

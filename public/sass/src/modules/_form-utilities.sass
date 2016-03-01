@@ -1,0 +1,163 @@
+$inline-input-height: 42px
+
+.input-wrapper
+  margin-bottom: $small
+
+.input-quarter
+  width: calc(25% - 9px)
+  float: left
+  & + div
+    width: calc(75% - 9px)
+    float: left
+    margin-left: 18px
+
+.input-half
+  width: calc(50% - 9px)
+  float: left
+  & + div
+    width: calc(50% - 9px)
+    float: left
+    margin-left: 18px
+
+.input-three-quarter
+  width: calc(75% - 9px)
+  float: left
+  & + div
+    width: calc(25% - 9px)
+    float: left
+    margin-left: 18px
+
+label.checkbox-label
+  text-transform: none
+  font-size: $small
+
+label.inline-label
+  margin-bottom: -42px
+  background-color: white
+  display: block
+  height: 42px
+  padding-left: $x-small
+  line-height: 42px
+  text-transform: capitalize
+  font-size: $regular
+
+input.inline-label
+  height: 42px
+  background-color: transparent
+  text-align: right
+
+.input-group
+  input
+    margin-bottom: 0
+    border-top: 0
+    +border-radius(0)
+    &:first-of-type
+      border-top: 1px solid $lightgrey
+      +border-top-radius(4px)
+    &:last-of-type
+      +border-bottom-radius(4px)
+
+// Custom upload used when there is a text or number input and you want to attach a file to it.
+input.with-upload
+  border-bottom: 0
+  +border-bottom-radius(0)
+
+label.in-input-upload input[type="file"]
+  position: fixed
+  top: -10000px
+  left: -10000px
+
+.in-input-upload
+  border: 1px solid $lightgrey
+  border-top: 0
+  +border-bottom-radius(4px)
+  padding: 0 $x-small
+  background: #fff
+  display: block
+  text-transform: lowercase
+  height: 30px
+  margin-top: -6px
+  line-height: 30px
+
+.in-input-upload:hover
+  background: lighten($lightgrey, 12)
+
+.in-input-upload:active
+  background: lighten($lightgrey, 12)
+
+.in-input-upload :invalid + span
+  color: darken($lightgrey, 20)
+
+.in-input-upload :valid + span
+  color: $grey
+
+.input-group
+  input.with-upload
+    border-bottom: 0
+    +border-bottom-radius(0)
+
+  .in-input-upload
+    +border-bottom-radius(0px)
+    &:last-child
+      +border-bottom-radius(4px)
+
+
+// Use this when there is some extra info you want to provide beneath an input. This can be some kind of tip what to put in the input or (as it was originally used) a calculator, to help the user make a good guess about what number to insert in input
+.input-helper
+  font-size: $small
+  color: lighten($grey, 30%)
+  display: block
+  margin-top: -12px
+
+  &.input-error
+    color: $darkred
+
+  .number-input-with-arrows
+    background-color: transparent
+    border: 0
+    display: inline
+    font-size: $small
+    color: transparent
+    +text-shadow(lighten($grey, 30%) -2px 0 0)
+    min-width: 30px
+    max-width: 42px
+    padding: 0
+    text-align: right
+    &:focus
+      outline: 0
+    &::-webkit-inner-spin-button
+      opacity: 1
+
+
+.error
+  .input-helper
+    margin-top: 0
+
+.form-error
+  border: 1px solid $darkred
+
+
+// Whenever there is a document upload
+.A4-upload-field-wrapper
+  position: relative
+  width: 100%
+  border: 3px dashed lighten($grey, 10%)
+  +border-radius(8px)
+  text-align: center
+  &:before
+    content: ""
+    display: block
+    padding-top: 141%
+
+  .A4-upload-field
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+
+// Whenever you want to offer extra or advanced form options
+.advanced-content
+  display: none
+

@@ -1,0 +1,36 @@
+.pagination
+  +display-flex(flex)
+  +justify-content(center)
+
+  .pagination-scope, .pagination-icon
+    cursor: pointer
+    padding: 0 13px
+    line-height: 36px
+    color: lighten($grey, 30%)
+    transition: color 0.2s ease
+    &:hover
+      border: 0
+      color: $grey
+
+  .pagination-icon
+    font-size: $x-large
+
+  .active-scope
+    background-color: rgba(black, 0.07)
+    color: $grey
+    +border-radius(4px)
+
+.sticky-pagination
+  padding: 6px
+  background-color: #f2f2f2
+  border-radius: 30px
+  position: fixed
+  bottom: 18px
+  // left: 25%
+  z-index: 2
+  +box-shadow(rgba(0,0,0,0.3) 0px 1px 3px)
+
+@media #{$mobile}
+  .pagination
+    .pagination-item
+      display: none

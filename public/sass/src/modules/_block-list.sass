@@ -1,0 +1,21 @@
+.block-list
+	margin-top: $regular
+	.block-list-item
+		border-top: 1px solid $lightgrey
+		padding: $small $regular
+		&:nth-child(2n+1)
+			background-color: lighten($lightgrey, 11)
+		&:last-child
+			border-bottom: 1px solid $lightgrey
+
+		.btn
+			margin-top: $small
+
+// MOBILE
+@media #{$mobile}
+	.block-list
+		margin-left: -$xx-large
+		margin-right: -$xx-large
+
+// DESKTOP
+@media #{$desktop}

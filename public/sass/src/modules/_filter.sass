@@ -1,0 +1,25 @@
+.filter
+  display: block
+
+  .filter-condition
+    padding: 15px 0
+    border-bottom: 1px solid $lightgrey
+    h1
+      font-size: $regular
+      color: $black
+      cursor: pointer
+
+    .checkbox
+      font-size: $small
+      color: $black
+      input[type=checkbox]
+        margin-top: 5px
+    select
+      width: 100%
+
+.filter-submit
+  text-align: center
+
+@media #{$mobile}
+  .filter
+    display: none

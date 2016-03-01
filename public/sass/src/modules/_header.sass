@@ -1,0 +1,262 @@
+// GENERAL
+header
+  top: 0
+  width: 100%
+  position: fixed
+  z-index: 100
+
+.eventshop-header
+  background-color: white
+  border-bottom: 1px solid #ddd
+
+  .user-info
+    text-align: right
+    float: left
+    line-height: $regular
+    padding-right: $small
+    height: 60px
+    padding-top: 9px
+
+  .caret
+    float: left
+    font-size: $large
+    margin-right: 6px
+    height: 60px
+    padding-top: 9px
+
+.ht-header
+  background-color: $ht-blue
+  color: white
+
+
+// MOBILE
+@media #{$mobile}
+  header
+    height: 44px
+    +display-flex
+
+    .header-left
+      flex: 1
+
+    .header-mid
+      flex: 3
+      text-align: center
+      line-height: 44px
+
+      .page-title
+        font-weight: $normal
+        font-size: $large
+
+    .header-right
+      flex: 1
+
+  .ht-header
+    .toolbar-trigger
+      color: white
+      font-size: $x-large
+      display: block
+      padding: 0 $x-small
+
+    .ht-home
+      display: none
+
+    .header-functions *
+      display: none
+
+// TABLET
+
+// DESKTOP
+@media #{$desktop}
+  header
+    height: 60px
+    padding-top: 6px
+
+    .header-left
+      position: absolute
+      left: 18px
+      line-height: 48px
+      font-size: 30px
+      font-weight: 300
+
+    .header-mid
+      display: block
+      min-width: 2px
+      margin: 0 auto
+      max-height: 48px
+
+      .page-title
+        display: none
+
+    .header-right
+      position: absolute
+      right: 9px
+      top: 0
+
+  .ht-header
+    padding-top: 0
+    font-size: $large
+
+    .toolbar-trigger
+      display: none
+
+    .ht-home
+      margin-left: -18px
+      width: 60px
+      height: 60px
+      background-color: rgba(black, 0.5)
+      +display-flex(flex)
+      +align-items(center)
+      +justify-content(center)
+      &:hover
+        border-bottom: 0
+
+      .ht-icon
+        margin-left: -4px
+
+    a
+      color: rgba(white, 0.8)
+      &:hover
+        color: white
+
+    .header-functions
+      height: 60px
+      +display-flex(flex)
+      +align-items(center)
+      margin-right: $x-small
+      z-index: 102
+
+    .notifications, .search
+      margin-right: $x-large
+      height: 60px
+      +display-flex(flex)
+      +align-items(center)
+
+    .search
+      width: 300px
+      height: 42px
+      z-index: 103
+
+      #searchForm
+        width: 100%
+
+      .search-input
+        font-family: 'FontAwesome', $font-family
+        background-color: #4A94B2
+        border: 1px solid #42849F
+        padding: 6px 14px
+        font-weight: $light
+        color: $creme
+        +input-placeholder
+          color: $creme
+
+      .twitter-typeahead
+        width: 100%
+
+    .user
+      height: 60px
+      display: flex
+      align-items: center
+
+      .user-avatar-placeholder
+        text-align: center
+        float: left
+        height: 60px
+        width: 60px
+
+// header
+  // top: 0
+  // height: 60px
+  // width: 100%
+  // position: fixed
+  // padding-top: 6px
+  // z-index: 100
+
+  // .header-left
+  //   position: absolute
+  //   left: 18px
+  //   line-height: 48px
+  //   font-size: 30px
+  //   font-weight: 300
+
+  // .header-mid
+  //   display: block
+  //   min-width: 2px
+  //   margin: 0 auto
+  //   max-height: 48px
+
+  // .header-right
+  //   position: absolute
+  //   right: 9px
+  //   top: 0
+
+
+
+// .ht-header
+  // background-color: $ht-blue
+  // color: white
+  // padding-top: 0
+  // font-size: $large
+
+  // .ht-home
+  //   margin-left: -18px
+  //   width: 60px
+  //   height: 60px
+  //   background-color: rgba(black, 0.5)
+  //   +display-flex(flex)
+  //   +align-items(center)
+  //   +justify-content(center)
+  //   &:hover
+  //     border-bottom: 0
+
+  //   .ht-icon
+  //     margin-left: -4px
+
+  // a
+  //   color: rgba(white, 0.8)
+  //   &:hover
+  //     color: white
+
+  // .header-functions
+  //   height: 60px
+  //   +display-flex(flex)
+  //   +align-items(center)
+  //   margin-right: $x-small
+  //   z-index: 102
+
+  // .notifications, .search
+  //   margin-right: $x-large
+  //   height: 60px
+  //   +display-flex(flex)
+  //   +align-items(center)
+
+  // .search
+  //   width: 300px
+  //   height: 42px
+  //   z-index: 103
+
+  //   #searchForm
+  //     width: 100%
+
+  //   .search-input
+  //     font-family: 'FontAwesome', $font-family
+  //     background-color: #4A94B2
+  //     border: 1px solid #42849F
+  //     padding: 6px 14px
+  //     font-weight: $light
+  //     color: $creme
+  //     +input-placeholder
+  //       color: $creme
+
+  //   .twitter-typeahead
+  //     width: 100%
+
+  // .user
+  //   height: 60px
+  //   display: flex
+  //   align-items: center
+
+  //   .user-avatar-placeholder
+  //     text-align: center
+  //     float: left
+  //     height: 60px
+  //     width: 60px
