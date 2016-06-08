@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" type="image/png" href="{{ url('/img/logo_small.png') }}" />
+
     <title>Differ</title>
 
     <!-- Fonts -->
@@ -14,18 +16,16 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
     <link href="{{ url('/css/vex.css') }}" rel="stylesheet">
     <link href="{{ url('/css/vex-theme-default.css') }}" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <link href="{{ url('/css/jquery.fancybox.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/jquery.treegrid.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/icheck/grey.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/main.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/selectize.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/selectize.bootstrap3.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default">
@@ -49,11 +49,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
                     @if (!Auth::guest())
-                        <li><a href="{{ url('/databases') }}">Databases</a></li>
-                        <li><a href="{{ url('/diff/create') }}">Diff</a></li>
+                        <li><a href="{{ url('/databases') }}"><i class="fa fa-list"></i> Databases</a></li>
+                        <li><a href="{{ url('/diff/create') }}"><i class="fa fa-database"></i> Structure Diff</a></li>
                     @endif
+                    <li><a href="{{ url('/faq') }}"><i class="fa fa-question-circle"></i> FAQ</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -65,7 +65,7 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -86,47 +86,24 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
     <script src="{{ url('/js/ajax-form.js') }}"></script>
     <script src="{{ url('/js/vex.combined.min.js') }}"></script>
-
+    <script src="{{ url('/js/jquery.fancybox.pack.js') }}"></script>
+    <script src="{{ url('/js/jquery.treegrid.min.js') }}"></script>
+    <script src="{{ url('/js/jquery.treegrid.bootstrap3.js') }}"></script>
+    <script src="{{ url('/js/icheck/icheck.min.js') }}"></script>
+    <script src="{{ url('/js/clipboard.min.js') }}"></script>
+    <script src="{{ url('/js/selectize.min.js') }}"></script>
+    <script src="{{ url('/js/ladda/spin.min.js') }}"></script>
+    <script src="{{ url('/js/ladda/ladda.min.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 
     <script>
         var host = "{{URL::to('/')}}";
-        vex.defaultOptions.className = 'vex-theme-default';
-
-        $(document).ready(function ($) {
-            $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-                event.preventDefault();
-                    $(this).ekkoLightbox();
-            });
-        });
-
-        $(document).on('click', '.remove-confirm', function(e) {
-            e.preventDefault();
-
-            var tr = $(this).closest('tr');
-            var url = $(this).attr('href');
-
-            vex.dialog.confirm({
-                message: 'Are you sure?',
-                callback: function(value) {
-                    if(value) {
-                        $.ajax({
-                            type: 'DELETE',
-                            url: url,
-                            data: {
-                                '_token': '{{ csrf_token() }}'
-                            },
-                            success: function(data) {
-                                tr.fadeOut('fast', function(){
-                                    tr.remove();
-                                });
-                            }
-                        });
-                    }
-                }
-            });
-
-        });
+        var csrf_token = "{{ csrf_token() }}";
     </script>
+
+    <script src="{{ url('/js/main.js') }}"></script>
+
+    @yield('javascript')
 
 </body>
 </html>

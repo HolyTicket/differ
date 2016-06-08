@@ -31,7 +31,7 @@
     </div>
     <div class="col-md-6">
         {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
-        {!! Form::text('password', null, ['class' => 'form-control']) !!}
+        {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 </div>
 
@@ -42,7 +42,7 @@
 
 
 
-{!! Form::submit('Update Database', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Save connection', ['class' => 'btn btn-primary btn-block']) !!}
 
 {!! Form::close() !!}
 

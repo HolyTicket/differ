@@ -33,11 +33,11 @@ class EmailUserRegistration implements ShouldQueue
      */
     public function handle(UserWasRegistered $event)
     {
-        print('GOGO');
-        $this->mailer->send('emails.welcome', ['name' => $event->user->name], function ($message) {
+
+        $this->mailer->send('emails.welcome', ['name' => $event->user->name], function ($message) use ($event) {
             $message->from('contact@holyticket.com', 'Differ');
-            $message->subject('Welcome to differ!');
-            $message->to('thomaslith@gmail.com');
+            $message->subject(sprintf('Welcome to differ, %s!', $event->user->name));
+            $message->to($event->user->email);
         });
     }
 }

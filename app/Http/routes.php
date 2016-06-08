@@ -23,8 +23,6 @@
 |
 */
 
-
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
@@ -34,7 +32,11 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('diff/load', 'DiffController@load');
     Route::resource('diff', 'DiffController');
-    Route::resource('databases', 'DatabasesController');
+    Route::post('sync/sql', 'SyncController@sql');
+    Route::post('sync/execute', 'SyncController@execute');
+    Route::post('sync/confirm', 'SyncController@confirm');
+    Route::resource('databases', 'ConnectionsController');
+    Route::resource('faq', 'QuestionsController');
     Route::get('/home', 'HomeController@index');
     Route::get('/profile/{id}', 'UsersController@showProfile');
 //    Route::get('/login', array('as' => 'login', 'uses' => 'Auth\AuthController@getLogin'));

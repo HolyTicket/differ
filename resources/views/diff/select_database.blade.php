@@ -1,70 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/diff/load') }}">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Source database</div>
+    @if(count($databases) > 1)
+        <div class="container">
+            {!! Form::open([
+            'method' => 'POST',
+            'class' => 'form-horizontal',
+            'action' => 'DiffController@load',
+            //'action' => url('/diff/load')
+            ]) !!}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Source database</div>
 
-                        <div class="panel-body">
-                            {!! csrf_field() !!}
+                            <div class="panel-body">
+                                {!! csrf_field() !!}
 
-                            <div class="form-group{{ $errors->has('database_one') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Stored connection</label>
+                                <div class="form-group{{ $errors->has('database_one') ? ' has-error' : '' }}">
+                                    <label class="col-md-4 control-label">Stored connection</label>
 
-                                <div class="col-md-6">
-                                    <select class="form-control" name="database_one" value="{{ old('database_one') }}">
-                                        <option value="">Select source</option>
-                                        @foreach($databases as $id => $name)
-                                            <option value="{{ $id }}">{{ $name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @if ($errors->has('database_one'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('database_one') }}</strong>
-                                    </span>
-                                    @endif
+                                    <div class="col-md-6">
+                                        {!! Form::select('database_one', $databases, null, ['class' => 'form-control']) !!}
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Target database</div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Target database</div>
 
-                        <div class="panel-body">
-                            <div class="form-group{{ $errors->has('database_one') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Stored connection</label>
+                            <div class="panel-body">
+                                <div class="form-group{{ $errors->has('database_two') ? ' has-error' : '' }}">
+                                    <label class="col-md-4 control-label">Stored connection</label>
 
-                                <div class="col-md-6">
-                                    <select class="form-control" name="database_two" value="{{ old('database_one') }}">
-                                        <option value="">Select destination</option>
-                                        @foreach($databases as $id => $name)
-                                            <option value="{{ $id }}">{{ $name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @if ($errors->has('database_one'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('database_one') }}</strong>
-                                    </span>
-                                    @endif
+                                    <div class="col-md-6">
+                                        {!! Form::select('database_two', $databases, null, ['class' => 'form-control']) !!}
+                                        <span id="helpBlock2" class="help-block">{{ $errors->first('database_two') }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        {!! Form::button('Diff', ['type' => 'submit', 'class' => 'btn btn-primary btn-lg ladda-button', 'data-size' => 'l', 'data-style' => 'expand-left']) !!}
+                    </div>
+                </div>
+
+            {!! Form::close() !!}
+        </div>
+    @else
+        <div class="container">
             <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-default btn-lg">Diff</button>
+                <div class="col-md-12">
+                    @include('elements.alerts.warning', ['message' => _('You need to add at least two connections to start diffing.')])
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    @endif
 @endsection

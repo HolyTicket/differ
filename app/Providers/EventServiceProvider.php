@@ -5,6 +5,10 @@ namespace App\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+use App\Models\Database;
+use App\Models\Change;
+use Auth;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**

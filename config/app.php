@@ -158,6 +158,9 @@ return [
 
         // Manually added by @Tom
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\DiffServiceProvider::class,
+        App\Providers\HelperServiceProvider::class
+
 
     ],
 
@@ -208,7 +211,10 @@ return [
         // Manually added by @Tom
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        'Sql' => App\Facades\SqlFacade::class,
+        'Connect' => App\Services\ConnectService::class,
+        'Sync' => App\Facades\SyncFacade::class,
+        'StringHelper' => App\Facades\StringFacade::class
     ],
 
 ];

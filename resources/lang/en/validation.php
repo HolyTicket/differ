@@ -89,8 +89,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'database_name' => [
+            'connection' => 'Could not connect to database. Error message: <i>:error</i>',
         ],
     ],
 

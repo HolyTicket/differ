@@ -1,9 +1,9 @@
 <?php
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Table extends Eloquent
+class Deploy extends Eloquent
 {
     /**
      * The attributes that are mass assignable.
@@ -13,5 +13,9 @@ class Table extends Eloquent
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+    public function changes() {
+        return $this->hasMany('App\Models\Change');
+    }
 
 }
