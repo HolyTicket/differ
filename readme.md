@@ -1,27 +1,25 @@
-# Laravel PHP Framework
+# DifferDB
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+DifferDB is an online application which is able to compare two MySQL databases, show the differences and sync the changes. DifferDB is final product of my Thesis at the Amsterdam University of Applied Sciences.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Step one: create databases
+Create two database connections and save them at your account. The login credentials are safely stored using AES and a HMAC.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Step two: diff the databases
+Diff the databases.
 
-## Official Documentation
+## Step three: check and select the differences
+Check the differences and select the ones you'd like to process.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Step four: Execute
+Create SQL queries or execute them directly. You can also sync multiple databases at the same time.
 
-## Contributing
+# To-Do
+- Create API for integration with Amazon CodeDeploy
+- Handle diffing of column orders
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+# Thanks
+Dick Heinhuis (coaching)
+Willem Brouwer (coaching)
+Martine Mulder (logo)
+Ralph Ruijs (checking the code)
