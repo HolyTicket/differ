@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Compilation errors
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">89</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                            <li><a href="#Console/Commands/Inspire.php"><i class="icon-file"></i> Console/Commands/Inspire.php</a></li>
+                                                                                                    <li><a href="#Console/Kernel.php"><i class="icon-file"></i> Console/Kernel.php</a></li>
+                                                                                                    <li><a href="#Events/Event.php"><i class="icon-file"></i> Events/Event.php</a></li>
+                                                                                                    <li><a href="#Events/UserWasRegistered.php"><i class="icon-file"></i> Events/UserWasRegistered.php</a></li>
+                                                                                                    <li><a href="#Exceptions/Handler.php"><i class="icon-file"></i> Exceptions/Handler.php</a></li>
+                                                                                                    <li><a href="#Facades/DependencyFacade.php"><i class="icon-file"></i> Facades/DependencyFacade.php</a></li>
+                                                                                                    <li><a href="#Facades/DiffFacade.php"><i class="icon-file"></i> Facades/DiffFacade.php</a></li>
+                                                                                                    <li><a href="#Facades/SqlFacade.php"><i class="icon-file"></i> Facades/SqlFacade.php</a></li>
+                                                                                                    <li><a href="#Facades/StringFacade.php"><i class="icon-file"></i> Facades/StringFacade.php</a></li>
+                                                                                                    <li><a href="#Facades/SyncFacade.php"><i class="icon-file"></i> Facades/SyncFacade.php</a></li>
+                                                                                                    <li><a href="#Helpers/String.php"><i class="icon-file"></i> Helpers/String.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Auth/AuthController.php"><i class="icon-file"></i> Http/Controllers/Auth/AuthController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Auth/PasswordController.php"><i class="icon-file"></i> Http/Controllers/Auth/PasswordController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/ConnectionsController.php"><i class="icon-file"></i> Http/Controllers/ConnectionsController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/Controller.php"><i class="icon-file"></i> Http/Controllers/Controller.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/DiffController.php"><i class="icon-file"></i> Http/Controllers/DiffController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/HomeController.php"><i class="icon-file"></i> Http/Controllers/HomeController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/QuestionsController.php"><i class="icon-file"></i> Http/Controllers/QuestionsController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/SyncController.php"><i class="icon-file"></i> Http/Controllers/SyncController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/UsersController.php"><i class="icon-file"></i> Http/Controllers/UsersController.php</a></li>
+                                                                                                    <li><a href="#Http/Kernel.php"><i class="icon-file"></i> Http/Kernel.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/Authenticate.php"><i class="icon-file"></i> Http/Middleware/Authenticate.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/EncryptCookies.php"><i class="icon-file"></i> Http/Middleware/EncryptCookies.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/RedirectIfAuthenticated.php"><i class="icon-file"></i> Http/Middleware/RedirectIfAuthenticated.php</a></li>
+                                                                                                    <li><a href="#Http/Middleware/VerifyCsrfToken.php"><i class="icon-file"></i> Http/Middleware/VerifyCsrfToken.php</a></li>
+                                                                                                    <li><a href="#Http/Requests/Request.php"><i class="icon-file"></i> Http/Requests/Request.php</a></li>
+                                                                                                    <li><a href="#Http/routes.php"><i class="icon-file"></i> Http/routes.php</a></li>
+                                                                                                    <li><a href="#Jobs/Job.php"><i class="icon-file"></i> Jobs/Job.php</a></li>
+                                                                                                    <li><a href="#Listeners/EmailUserRegistration.php"><i class="icon-file"></i> Listeners/EmailUserRegistration.php</a></li>
+                                                                                                    <li><a href="#Models/Change.php"><i class="icon-file"></i> Models/Change.php</a></li>
+                                                                                                    <li><a href="#Models/Connection.php"><i class="icon-file"></i> Models/Connection.php</a></li>
+                                                                                                    <li><a href="#Models/Deploy.php"><i class="icon-file"></i> Models/Deploy.php</a></li>
+                                                                                                    <li><a href="#Models/Question.php"><i class="icon-file"></i> Models/Question.php</a></li>
+                                                                                                    <li><a href="#Models/QuestionCategory.php"><i class="icon-file"></i> Models/QuestionCategory.php</a></li>
+                                                                                                    <li><a href="#Models/User.php"><i class="icon-file"></i> Models/User.php</a></li>
+                                                                                                    <li><a href="#Models/Virtual/Column.php"><i class="icon-file"></i> Models/Virtual/Column.php</a></li>
+                                                                                                    <li><a href="#Models/Virtual/Constraint.php"><i class="icon-file"></i> Models/Virtual/Constraint.php</a></li>
+                                                                                                    <li><a href="#Models/Virtual/Database.php"><i class="icon-file"></i> Models/Virtual/Database.php</a></li>
+                                                                                                                                                            <li><a href="#Models/Virtual/Table.php"><i class="icon-file"></i> Models/Virtual/Table.php</a></li>
+                                                                                                    <li><a href="#Providers/AppServiceProvider.php"><i class="icon-file"></i> Providers/AppServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/AuthServiceProvider.php"><i class="icon-file"></i> Providers/AuthServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/DiffServiceProvider.php"><i class="icon-file"></i> Providers/DiffServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/EventServiceProvider.php"><i class="icon-file"></i> Providers/EventServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/HelperServiceProvider.php"><i class="icon-file"></i> Providers/HelperServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Providers/RouteServiceProvider.php"><i class="icon-file"></i> Providers/RouteServiceProvider.php</a></li>
+                                                                                                    <li><a href="#Scopes/UserScope.php"><i class="icon-file"></i> Scopes/UserScope.php</a></li>
+                                                                                                    <li><a href="#Services/BaseService.php"><i class="icon-file"></i> Services/BaseService.php</a></li>
+                                                                                                    <li><a href="#Services/ConnectService.php"><i class="icon-file"></i> Services/ConnectService.php</a></li>
+                                                                                                    <li><a href="#Services/DependencyService.php"><i class="icon-file"></i> Services/DependencyService.php</a></li>
+                                                                                                    <li><a href="#Services/DiffService.php"><i class="icon-file"></i> Services/DiffService.php</a></li>
+                                                                                                    <li><a href="#Services/SqlGenerationService.php"><i class="icon-file"></i> Services/SqlGenerationService.php</a></li>
+                                                                                                    <li><a href="#Services/SyncService.php"><i class="icon-file"></i> Services/SyncService.php</a></li>
+                                                                                                    <li><a href="#Validators/CustomValidator.php"><i class="icon-file"></i> Validators/CustomValidator.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li>Compilation Errors</li>
+            </ul>
+
+            
+                            <div class="package-contents">
+                                            <a name="Console/Commands/Inspire.php" id="Console/Commands/Inspire.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Console/Commands/Inspire.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Console\Commands\Inspire</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Console/Kernel.php" id="Console/Kernel.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Console/Kernel.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Console\Kernel</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Events/Event.php" id="Events/Event.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Events/Event.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Events/UserWasRegistered.php" id="Events/UserWasRegistered.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Events/UserWasRegistered.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>28</td>
+                                        <td>Argument $user is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>21</td>
+                                        <td>No summary for property $user</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Exceptions/Handler.php" id="Exceptions/Handler.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Exceptions/Handler.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Facades/DependencyFacade.php" id="Facades/DependencyFacade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Facades/DependencyFacade.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method getFacadeAccessor()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Facades/DiffFacade.php" id="Facades/DiffFacade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Facades/DiffFacade.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method getFacadeAccessor()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Facades/SqlFacade.php" id="Facades/SqlFacade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Facades/SqlFacade.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method getFacadeAccessor()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Facades/StringFacade.php" id="Facades/StringFacade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Facades/StringFacade.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method getFacadeAccessor()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Facades/SyncFacade.php" id="Facades/SyncFacade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Facades/SyncFacade.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method getFacadeAccessor()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Helpers/String.php" id="Helpers/String.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Helpers/String.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Auth/AuthController.php" id="Http/Controllers/Auth/AuthController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Auth/AuthController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Auth/PasswordController.php" id="Http/Controllers/Auth/PasswordController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Auth/PasswordController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/ConnectionsController.php" id="Http/Controllers/ConnectionsController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/ConnectionsController.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>No summary for method create()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>50</td>
+                                        <td>No summary for method update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>94</td>
+                                        <td>No summary for method destroy()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/Controller.php" id="Http/Controllers/Controller.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/Controller.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/DiffController.php" id="Http/Controllers/DiffController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/DiffController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/HomeController.php" id="Http/Controllers/HomeController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/HomeController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/QuestionsController.php" id="Http/Controllers/QuestionsController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/QuestionsController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/SyncController.php" id="Http/Controllers/SyncController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/SyncController.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>48</td>
+                                        <td>No summary for method execute()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>80</td>
+                                        <td>No summary for method confirm()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Controllers/UsersController.php" id="Http/Controllers/UsersController.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Controllers/UsersController.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Kernel.php" id="Http/Kernel.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Kernel.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Kernel</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/Authenticate.php" id="Http/Middleware/Authenticate.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/Authenticate.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Middleware\Authenticate</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/EncryptCookies.php" id="Http/Middleware/EncryptCookies.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/EncryptCookies.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Middleware\EncryptCookies</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/RedirectIfAuthenticated.php" id="Http/Middleware/RedirectIfAuthenticated.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/RedirectIfAuthenticated.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Http\Middleware\RedirectIfAuthenticated</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Middleware/VerifyCsrfToken.php" id="Http/Middleware/VerifyCsrfToken.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Middleware/VerifyCsrfToken.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Middleware\VerifyCsrfToken</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/Requests/Request.php" id="Http/Requests/Request.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/Requests/Request.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Http\Requests\Request</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Http/routes.php" id="Http/routes.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Http/routes.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Jobs/Job.php" id="Jobs/Job.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Jobs/Job.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>7</td>
+                                        <td>No summary for class \App\Jobs\Job</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Listeners/EmailUserRegistration.php" id="Listeners/EmailUserRegistration.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Listeners/EmailUserRegistration.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Change.php" id="Models/Change.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Change.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Connection.php" id="Models/Connection.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Connection.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Deploy.php" id="Models/Deploy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Deploy.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Question.php" id="Models/Question.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Question.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/QuestionCategory.php" id="Models/QuestionCategory.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/QuestionCategory.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/User.php" id="Models/User.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/User.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Virtual/Column.php" id="Models/Virtual/Column.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Virtual/Column.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Virtual/Constraint.php" id="Models/Virtual/Constraint.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Virtual/Constraint.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>189</td>
+                                        <td>No summary for method diff()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Virtual/Database.php" id="Models/Virtual/Database.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Virtual/Database.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>211</td>
+                                        <td>No summary for method diff()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Models/Virtual/Table.php" id="Models/Virtual/Table.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Models/Virtual/Table.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/AppServiceProvider.php" id="Providers/AppServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/AppServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/AuthServiceProvider.php" id="Providers/AuthServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/AuthServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Providers\AuthServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/DiffServiceProvider.php" id="Providers/DiffServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/DiffServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>19</td>
+                                        <td>No summary for method boot()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>No summary for method register()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/EventServiceProvider.php" id="Providers/EventServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/EventServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/HelperServiceProvider.php" id="Providers/HelperServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/HelperServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method boot()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method register()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Providers/RouteServiceProvider.php" id="Providers/RouteServiceProvider.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Providers/RouteServiceProvider.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>8</td>
+                                        <td>No summary for class \App\Providers\RouteServiceProvider</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Scopes/UserScope.php" id="Scopes/UserScope.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Scopes/UserScope.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Services/BaseService.php" id="Services/BaseService.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Services/BaseService.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Services/ConnectService.php" id="Services/ConnectService.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Services/ConnectService.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Services/DependencyService.php" id="Services/DependencyService.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Services/DependencyService.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Services/DiffService.php" id="Services/DiffService.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Services/DiffService.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method connect()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>39</td>
+                                        <td>No summary for method purge()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>49</td>
+                                        <td>No summary for method generateId()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>58</td>
+                                        <td>No summary for method diff()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Services/SqlGenerationService.php" id="Services/SqlGenerationService.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Services/SqlGenerationService.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $sql is missing from the Docblock of removeLastChar</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>No summary for method removeLastChar()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>262</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $source_index in alterIndex()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>262</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $destination_index in alterIndex()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Services/SyncService.php" id="Services/SyncService.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Services/SyncService.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Validators/CustomValidator.php" id="Validators/CustomValidator.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Validators/CustomValidator.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                    </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on 
+Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
+
+Call Stack:
+    0.0514    1859968   1. {main}() /Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar:0
+    0.0517    1856160   2. require('phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/bin/phpdoc') /Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar:10
+    0.1653   13120208   3. phpDocumentor\Application->run() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/bin/phpdoc:23
+    0.1678   13376544   4. Symfony\Component\Console\Application->run() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Application.php:183
+    0.1680   13377480   5. Symfony\Component\Console\Application->doRun() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/symfony/console/Symfony/Component/Console/Application.php:126
+    0.1682   13378400   6. Symfony\Component\Console\Application->doRunCommand() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/symfony/console/Symfony/Component/Console/Application.php:195
+    0.1682   13378872   7. Symfony\Component\Console\Command\Command->run() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/symfony/console/Symfony/Component/Console/Application.php:874
+    0.1686   13385000   8. phpDocumentor\Command\Project\RunCommand->execute() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:253
+    1.3733   26250224   9. Symfony\Component\Console\Command\Command->run() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Command/Project/RunCommand.php:275
+    1.3736   26253664  10. phpDocumentor\Transformer\Command\Project\TransformCommand->execute() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:253
+    1.4691   26832880  11. phpDocumentor\Console\Output\Output->writeTimedLog() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Transformer/Command/Project/TransformCommand.php:206
+    1.4691   26832976  12. call_user_func_array:{phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Console/Output/Output.php:59}() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Console/Output/Output.php:59
+    1.4691   26833552  13. phpDocumentor\Transformer\Transformer->execute() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Console/Output/Output.php:59
+    1.4702   26855424  14. phpDocumentor\Transformer\Transformer->transformProject() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Transformer/Transformer.php:141
+    8.2101   31547144  15. phpDocumentor\Transformer\Transformer->applyTransformationToProject() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Transformer/Transformer.php:275
+    8.2103   31547376  16. phpDocumentor\Plugin\Twig\Writer\Twig->transform() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Transformer/Transformer.php:312
+    8.2105   31552944  17. Twig_Environment->render() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/src/phpDocumentor/Plugin/Twig/Writer/Twig.php:116
+    8.2122   31637000  18. Twig_Template->render() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Environment.php:293
+    8.2122   31653720  19. Twig_Template->display() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Template.php:274
+    8.2122   31655328  20. Twig_Template->displayWithErrorHandling() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Template.php:263
+    8.2122   31655400  21. __TwigTemplate_5cbe077368cc2e28ba148f9c6a1c5e717b135fe507a1b01961ca4890697e3d9f->doDisplay() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Template.php:289
+    8.2122   31655808  22. Twig_Template->display() /private/var/folders/kx/yw41595d3l58hvvnw9977qyh0000gn/T/phpdoc-twig-cache/5c/be/077368cc2e28ba148f9c6a1c5e717b135fe507a1b01961ca4890697e3d9f.php:33
+    8.2122   31656832  23. Twig_Template->displayWithErrorHandling() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Template.php:263
+    8.2122   31656832  24. __TwigTemplate_4d50f77b565db4744b8cc6c20afc180fd628f8bb73b0f98bc9049a917defc643->doDisplay() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Template.php:289
+    8.2770   31878944  25. twig_date_format_filter() /private/var/folders/kx/yw41595d3l58hvvnw9977qyh0000gn/T/phpdoc-twig-cache/4d/50/f77b565db4744b8cc6c20afc180fd628f8bb73b0f98bc9049a917defc643.php:383
+    8.2770   31878992  26. twig_date_converter() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php:465
+    8.2770   31878992  27. Twig_Extension_Core->getTimezone() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php:512
+    8.2770   31879176  28. date_default_timezone_get() phar:///Applications/MAMP/htdocs/askask2/app/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php:89
+
+June 12th, 2016 at 21:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

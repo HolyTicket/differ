@@ -7,45 +7,96 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 
+/**
+ * Class ConnectionsController
+ * @package App\Http\Controllers
+ */
 class ConnectionsController extends Controller
 {
+    /**
+     * The validation rules for the connections
+     * @var array
+     */
     public $validations = [
         'name' => 'required',
         'host' => 'required',
         'database_name' => 'required|connection',
         'username' => 'required',
     ];
+
+    /**
+     * Show a list with all connections
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index() {
-        $databases = Connection::where('user_id', Auth::id())->get();
+        // Get all connections
+        $databases = Connection::all();
         return view('databases.index', compact('databases'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(Request $request) {
+        // Render view
         return view('databases.edit');
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     */
     public function update(Request $request, $id) {
+        // Validate the request (also check if SQL connection can be established)
         $this->validate($request, $this->validations);
+
+        // Get the request data as an array
         $data = $request->all();
+
+        // Update the connection with the new information
         Connection::find($id)->update($data);
     }
 
+    /**
+     * Create a new connection
+     * @param Request $request
+     */
     public function store(Request $request) {
+        // Validate the request (also check if SQL connection can be established)
         $this->validate($request, $this->validations);
+
+        // Get the request data as an array
         $data = $request->all();
+
+        // Create a new connection
         Connection::create($data);
     }
 
+    /**
+     * Edit a connection
+     * @param $id
+     * @return mixed
+     * @todo change $database to $connection
+     */
     public function edit($id)
     {
-        $database = Connection::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        // Find connection
+        $database = Connection::where('id', $id)->firstOrFail();
 
+        // Render view
         return view('databases.edit')->withDatabase($database);
     }
 
+    /**
+     * @param integer $id the id of the connection
+     */
     public function destroy($id) {
-        $database = Connection::findOrFail($id);
-        $database->delete();
+        // Find the connection.
+        $connection = Connection::where('id', $id)->firstOrFail();
+
+        // Remove this connection
+        $connection->delete();
     }
 
 }

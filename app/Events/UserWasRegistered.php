@@ -7,10 +7,17 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+/**
+ * Class UserWasRegistered
+ * @package App\Events
+ */
 class UserWasRegistered extends Event
 {
     use SerializesModels;
 
+    /**
+     * @var User
+     */
     public $user;
 
     /**

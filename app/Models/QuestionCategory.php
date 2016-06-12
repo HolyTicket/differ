@@ -5,19 +5,24 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 use Auth;
 use Crypt;
 
+/**
+ * Class QuestionCategory
+ * @package App\Models
+ */
 class QuestionCategory extends Eloquent
 {
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @var array $fillable Contains the database attributes that are mass assignable
      */
     protected $fillable = [
         'question', 'answer', 'sort'
     ];
 
+    /**
+     * Get the questions for this category
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function questions() {
         return $this->hasMany('App\Models\Question', 'category_id');
     }
-
 }

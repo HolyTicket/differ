@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\User;
+use App\Http\Controllers\Controller;
+use Event;
+use App\Events\UserWasRegistered;
+
+/**
+ * Class UsersController
+ * @package App\Http\Controllers
+ */
+class UsersController extends Controller
+{
+    /**
+     * Show the profile of an user
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showProfile($id)
+    {
+        // Get the user or throw exception
+        $user = User::findOrFail($id);
+
+        // Render the view
+        return view('user.profile', ['user' => User::findOrFail($id)]);
+    }
+}

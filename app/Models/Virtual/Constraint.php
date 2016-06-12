@@ -1,0 +1,220 @@
+<?php
+namespace App\Models\Virtual;
+
+use App\Services\DiffService;
+use App\Services\SqlGenerationService;
+
+use App\Models\Deploy;
+use App\Models\Change;
+
+use Auth;
+use Diff;
+use Connect;
+use Sql;
+
+/**
+ * Constraint representation
+ * @package App\Models\Virtual
+ */
+class Constraint
+{
+    /**
+     * @var string $name name of the constraint
+     */
+    private $name;
+    /**
+     * @var array $local_columns local columns of this constraint
+     */
+    private $local_columns = [];
+    /**
+     * @var string $foreign_table_name name of the foreign table
+     */
+    private $foreign_table_name;
+    /**
+     * @var array $foreign_columns array containing the foreign columns
+     */
+    private $foreign_columns = [];
+    /**
+     * @var string $on_delete what to do when deleting (CASCADE, NO ACTION, SET NULL, RETRICT)
+     */
+    private $on_delete;
+    /**
+     * @var string $on_update what to do when updating (CASCADE, NO ACTION, SET NULL, RETRICT)
+     */
+    private $on_update;
+
+    /**
+     * Constraint constructor.
+     * @param $name
+     * @param array $local_columns
+     * @param $foreign_table_name
+     * @param array $foreign_columns
+     * @param $on_delete
+     * @param $on_update
+     */
+    public function __construct($name, array $local_columns, $foreign_table_name, array $foreign_columns, $on_delete, $on_update)
+    {
+        $this->name = $name;
+        $this->local_columns = $local_columns;
+        $this->foreign_table_name = $foreign_table_name;
+        $this->foreign_columns = $foreign_columns;
+
+        // Empty is the same as RESTRICT (in MySQL). We're using Restrict for now.
+        if(empty($on_update) || $on_update == null) {
+            $on_update = 'RESTRICT';
+        }
+
+        // Empty is the same as RESTRICT (in MySQL). We're using Restrict for now.
+        if(empty($on_delete) || $on_delete == null) {
+            $on_delete = 'RESTRICT';
+        }
+        $this->on_delete = $on_delete;
+        $this->on_update = $on_update;
+    }
+
+    /**
+     * Get the name of the constraint
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the name of the constraint
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get the local columns
+     * @return array
+     */
+    public function getLocalColumns()
+    {
+        return $this->local_columns;
+    }
+
+    /**
+     * Set the local columns
+     * @param array $local_columns
+     */
+    public function setLocalColumns($local_columns)
+    {
+        $this->local_columns = $local_columns;
+    }
+
+    /**
+     * Get the name of the foreign table
+     * @return mixed
+     */
+    public function getForeignTableName()
+    {
+        return $this->foreign_table_name;
+    }
+
+    /**
+     * Set the name of the foreign table
+     * @param mixed $foreign_table_name
+     */
+    public function setForeignTableName($foreign_table_name)
+    {
+        $this->foreign_table_name = $foreign_table_name;
+    }
+
+    /**
+     * Get the foreign columns array
+     * @return array
+     */
+    public function getForeignColumns()
+    {
+        return $this->foreign_columns;
+    }
+
+    /**
+     * Set the foreign columns array
+     * @param array $foreign_columns
+     */
+    public function setForeignColumns($foreign_columns)
+    {
+        $this->foreign_columns = $foreign_columns;
+    }
+
+    /**
+     * Get ON DELETE
+     * @return mixed
+     */
+    public function getOnDelete()
+    {
+        return $this->on_delete;
+    }
+
+    /**
+     * Set ON DELETE
+     * @param mixed $on_delete
+     */
+    public function setOnDelete($on_delete)
+    {
+        $this->on_delete = $on_delete;
+    }
+
+    /**
+     * Get ON UPDATE
+     * @return mixed
+     */
+    public function getOnUpdate()
+    {
+        return $this->on_update;
+    }
+
+    /**
+     * Set ON UPDATE
+     * @param mixed $on_update
+     */
+    public function setOnUpdate($on_update)
+    {
+        $this->on_update = $on_update;
+    }
+
+    /**
+     * @param Constraint $destination_constraint
+     * @param Change $table_change
+     * @return array
+     * @throws \Exception
+     */
+    public function diff(Constraint $destination_constraint, Change $table_change)
+    {
+        // Create source constraint alias
+        $source_constraint = &$this;
+
+        // Create a parent change (because the constraint is altered)
+        $parent_change = $table_change->addChange($destination_constraint->name, 'constraint_altered', 'constraint', '');
+
+        // Get all attributes/properties of this object
+        $source_attributes = get_object_vars($this);
+
+        // The name is at this point always the same, so no need to check it
+        unset($source_attributes['name']);
+
+        $changes = [];
+
+        // Loop through source attributes
+        foreach($source_attributes as $attribute_name => $attribute_value) {
+            // If attribute is not the same
+            if($attribute_value != $destination_constraint->{$attribute_name}) {
+                // generate the SQL Alter Constraint and add the change
+                $parent_change->addChange($attribute_name, 'attribute_altered', 'attribute', Sql::alterConstraint($this, $destination_constraint, $table_change->name));
+            }
+        }
+
+        // If there are no changes, remove the parent change
+        if(!$parent_change->children()->count()) {
+            $parent_change->delete();
+        }
+
+    }
+}

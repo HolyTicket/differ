@@ -14,37 +14,168 @@ use Diff;
 use Connect;
 use Sql;
 
+/**
+ * Database representation
+ * @package App\Models\Virtual
+ */
 class Database
 {
-    public $name;
-    public $tables = [];
+    /**
+     * @var $name name of the database
+     */
+    private $name;
+    /**
+     * @var array $tables tables of the database
+     */
+    private $tables = [];
 
+    /**
+     * Checks if database has a table with the same structure of the given table
+     * @param Table $table
+     * @param Database $database
+     * @return bool
+     */
+    public function hasSameTable(Table $table, Database $database) {
+        // Get the attributes of the source table
+        $attributes_from_source = $table->getAttributes();
+
+        $columns = $attributes_from_source['columns'];
+        $indices = $attributes_from_source['indices'];
+        $constraints = $attributes_from_source['constraints'];
+
+        // we don't need a name: remove it from the attributes
+        unset($attributes_from_source['name']);
+
+        // Remove the columns, indices and constraints, we check them manually and not in a loop
+        unset($attributes_from_source['columns']);
+        unset($attributes_from_source['indices']);
+        unset($attributes_from_source['constraints']);
+
+        // Loop through the destination tables
+        foreach($this->getTables() as $t) {
+
+            // If the source database has a table with the same name, then stop the check of this table
+            if(isset($database->getTables()[$t->getName()]))
+                continue;
+
+            // Get the attributes of the table
+            $a = $t->getAttributes();
+
+            // By default the attribute is the same
+            $same = true;
+
+            // Loop through the source attributes. If one of the attributes is NOT the same as the destination attribute, the table is not the same.
+            foreach($attributes_from_source as $attribute_name => $at) {
+                if($at != $a[$attribute_name]) {
+                    $same = false;
+                }
+            }
+            // If there are no changes found yet
+            if($same) {
+                // Check the columns, indices and constraints by generating a json representation.
+                if(
+                    json_encode($columns) != json_encode($t->getColumns()) ||
+                    json_encode($indices) != json_encode($t->getIndices()) ||
+                    json_encode($constraints) != json_encode($t->getConstraints())
+                ) {
+                    $same = false;
+                }
+            }
+            // If the table is the same, return the name of the table
+            if($same)
+                return $t->getName();
+        }
+        return false;
+    }
+
+    /**
+     * Get the name of the database
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the name of the database
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get the tables of this database
+     * @return array
+     */
+    public function getTables()
+    {
+        return $this->tables;
+    }
+
+    /**
+     * Set the tables of this database
+     * @param array $tables
+     */
+    public function setTables($tables)
+    {
+        $this->tables = $tables;
+    }
+
+    /**
+     * Parse the database: create a virtual representation in objects of the given database.
+     * @param \App\Models\Connection $database
+     * @param $connectionName
+     */
     public function parse(\App\Models\Connection $database, $connectionName) {
 
+        // Get the name of the database
         $this->name = $database->database_name;
 
+        // Get the Doctrine Schema manager
         $schema = \DB::getDoctrineSchemaManager();
 
+        // Doctrine cannot handle enums, so register them as a string
         $schema->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 
+        // Get the tables of the database
         $tables = $schema->listTables();
 
+        // Loop the tables of this database
         foreach($tables as $table) {
+            // Get the table name
             $table_name = $table->getName();
 
+            // Get some basic information about this table by a old-skool SQL query, because DOCTRINE has some limitations (see thesis)
             $status = \DB::connection($connectionName)->
                             select(sprintf('SHOW TABLE STATUS WHERE Name = "%s"', $table_name))[0];
+
+            // Get the charset. The charset is always the first part of the collation
+            // With the collation you can tell the charset. That is because the first part of collation includes the charset, e.g. if the collation is latin1_swedish_ci, the charset can't be anything else besides latin1. If the collation is utf8mb4_general_ci, the charset can't be anything else besides utf8mb4. – Pacerier Aug 20 '15 at 3:31
             $status->charset = explode('_', $status->Collation)[0];
 
+            // Add a DifferDB table representation to the tables array
             $this->tables[$table_name] = new Table($table_name, $status);
 
+            // Loop the indices
             foreach($table->getIndexes() as $index) {
+                // Add a DifferDB Index representation to the table
                 $this->tables[$table_name]->addIndex($index);
             }
 
+            // Loop the foreign keys (constraints)
+            foreach($table->getForeignKeys() as $constraint) {
+                // Add a DifferDB FK representation to the table
+                $this->tables[$table_name]->addConstraint($constraint);
+            }
 
+
+            // Get the columns of this table
             $columns = $table->getColumns();
 
+            // Loop the columns
             foreach($columns as $column) {
                 // Name of column
                     $name = $column->getName();
@@ -53,6 +184,7 @@ class Database
                     if($length == null) {
                         $length = 11;
                     }
+
                 $precision = $column->getPrecision();
                 $scale = $column->getScale();
                 $unsigned = $column->getUnsigned();
@@ -61,70 +193,69 @@ class Database
                 $autoincrement = $column->getAutoincrement();
                 $comment = $column->getComment();
 
+                // Get the type by a old-skool SQL query
                 $type = \DB::connection($connectionName)->select(sprintf('SHOW FIELDS FROM `%s` WHERE Field = "%s"', $table_name, $name));
                 $type = $type[0]->Type;
 
+                // Add a column to the table
                 $this->tables[$table_name]->addColumn($name, $type, $notnull, $default, $autoincrement, $comment);
-
             }
-
-//            $indices = $table->getIndexes();
-
-//            foreach($indices as $index) {
-//                if($index->isPrimary()) continue;
-//                $cols = [];
-//                foreach($index->getColumns() as $col) {
-//                    $cols[] = $col;
-//                }
-//
-//                if($index->isUnique()) {
-//                    $this->tables[$table_name]->addUniqueKey($index->getName(), $cols);
-//                } else {
-//                    $this->tables[$table_name]->addIndex($index->getName(), $cols);
-//                }
-//            }
         }
     }
 
+    /**
+     * @param Database $destination_db
+     * @return mixed
+     * @throws \Exception
+     */
     public function diff(Database $destination_db) {
+        // Create a source database alias
         $source_db = $this;
 
+        // Sql is empty now
         $sql = '';
 
+        // Reset the connection. Just to be sure.
         Connect::reset();
 
-        $differences = [];
-        $differences['children'] = [];
-
-        Deploy::truncate();
-        Change::truncate();
-
+        // Create a new deployment
         $deployment = new Deploy();
 
+        // Set the user_id of the deployment
         $deployment->user_id = Auth::id();
+
+        // Save the deployment
         $deployment->save();
 
+        // Get the ID of the saved dpeloyment
         $deployment_id = $deployment->id;
 
+        // Before saving the change, add this deployment_id
         Change::saving(function($change) use ($deployment_id) {
             $change->deploy_id = $deployment_id;
         });
 
+        // Create and save a parent change (upper level)
         $parent_change = new Change();
         $parent_change->type = 'database_altered';
         $parent_change->save();
+
+        // The renamed tables
+        $renamed_tables = [];
 
         // IF: table exists in source, but not in destination
         // THEN: generate create statement
 
         foreach($source_db->tables as $table_name => $table) {
             if(!isset($destination_db->tables[$table_name])) {
-                $change = new Change();
-                $change->type = 'table_added';
-                $change->name = $table_name;
-                $change->entity = 'table';
-                $change->sql = Sql::createTable($table);
-                $parent_change->children()->save($change);
+                $has_same_table = $destination_db->hasSameTable($table, $source_db);
+
+                if($has_same_table && !in_array($has_same_table, $renamed_tables)) {
+                    $renamed_tables[] = $has_same_table;
+                    $parent_change->addChange($table_name, 'table_renamed', 'table', Sql::renameTable($table, $has_same_table));
+                } else {
+                    $parent_change->addChange($table_name, 'table_added', 'table', Sql::createTable($table));
+                }
             }
         }
 
@@ -133,34 +264,40 @@ class Database
 
         foreach($destination_db->tables as $table_name => $table) {
             if(!isset($source_db->tables[$table_name])) {
-                $change = new Change();
-                $change->type = 'table_removed';
-                $change->name = $table_name;
-                $change->entity = 'table';
-                $change->sql = Sql::dropTable($table);
-                $parent_change->children()->save($change);
+                if(!in_array($table_name, $renamed_tables)) {
+                    $parent_change->addChange($table_name, 'table_removed', 'table', Sql::dropTable($table));
+                }
             }
         }
 
         // IF: table exists in both databases
         // THEN: diff the table using the diff() function of the table
 
-            foreach($source_db->tables as $table_name => $table) {
-                if(isset($destination_db->tables[$table_name])) {
-                    $table->diff($destination_db->tables[$table_name], $parent_change);
-                }
+        foreach($source_db->tables as $table_name => $table) {
+            if(isset($destination_db->tables[$table_name])) {
+                $table->diff($destination_db->tables[$table_name], $parent_change);
             }
+        }
 
+        // If there are not changes, remove the parent change
         if(!$parent_change->children()->count()) {
             $parent_change->delete();
         }
 
+        // Return the deployment or throw an exception
         return Deploy::findOrFail($deployment_id);
     }
 
+    /**
+     * Constructor: Create a virtual representation
+     * @param \App\Models\Connection $database_one
+     * @param $name
+     */
     public function __construct(\App\Models\Connection $database_one, $name)
     {
+        // Connect to the given database/connection
         Connect::connect($name, $database_one);
+        // Parse the virtual representation
         $this->parse($database_one, $name);
     }
 }

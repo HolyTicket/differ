@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 use Validator;
 use App\Validators\CustomValidator;
 
+/**
+ * Class AppServiceProvider
+ * @package App\Providers
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Add a custom validator for the MySQL connection checker
         Validator::resolver(function($translator, $data, $rules, $messages)
         {
             return new CustomValidator($translator, $data, $rules, $messages);

@@ -3,19 +3,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+/**
+ * Class Deploy
+ * @package App\Models
+ */
 class Deploy extends Eloquent
 {
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @var array $fillable Contains the database attributes that are mass assignable
      */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
+    /**
+     * Get the changes of this deployment
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function changes() {
         return $this->hasMany('App\Models\Change');
     }
-
 }

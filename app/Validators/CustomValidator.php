@@ -3,16 +3,47 @@ namespace App\Validators;
 
 use Connect;
 
+/**
+ * Class CustomValidator
+ * @package App\Validators
+ */
 class CustomValidator extends \Illuminate\Validation\Validator {
 
+    /**
+     * @var string $error Contains the validation error message
+     */
     private $error;
+
+    /**
+     * Validate the connection using the Connect service.
+     * @param $attribute
+     * @param $value
+     * @param $parameters
+     * @return bool
+     */
     public function validateConnection($attribute, $value, $parameters)
     {
+        // Try to connect to a (temporary) database ("test"). Method returns true when connection succeeded
         $connection = Connect::connect('test', $this->data);
+
+        // Reset the connection and reconnect to the main DifferDB database.
         Connect::reset();
+
+        // Save the error
         $this->error = $connection;
+
+        // Validation succeeded when $connection is true.
         return $connection === true;
     }
+
+    /**
+     * Replace the error message with the MySQL error message
+     * @param $message
+     * @param $attribute
+     * @param $rule
+     * @param $parameters
+     * @return mixed
+     */
     protected function replaceConnection($message, $attribute, $rule, $parameters)
     {
         return str_replace(':error', $this->error, $message);

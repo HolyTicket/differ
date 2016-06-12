@@ -1,0 +1,245 @@
+<?php
+namespace App\Models\Virtual;
+
+use App\Services\SqlGenerationService;
+
+use App\Models\Change;
+
+use Sql;
+
+/**
+ * Column representation
+ * @package App\Models\Virtual
+ */
+class Column
+{
+    // I prefer this syntax over the comma-seperated list
+    /**
+     * @var string $name name of the column
+     */
+    private $name;
+    /**
+     * @var string $type type of the column
+     */
+    private $type;
+    /**
+     * @var bool $notnull specifies if column can be null
+     */
+    private $notnull;
+    /**
+     * @var string $default default value.Can be specified value or CURRENT_TIMESTAMP, NULL, etc.
+     */
+    private $default;
+    /**
+     * @var bool $auto_increment specifies if the column has to auto increment
+     */
+    private $auto_increment;
+    /**
+     * @var string $comment a comment for this table
+     */
+    private $comment;
+    /**
+     * @var Table $table parent table
+     */
+    private $table;
+
+    /**
+     * Constructor. Creates a column and attributes
+     * @param $column_name
+     * @param $data_type
+     * @param $notnull
+     * @param $default
+     * @param $auto_increment
+     * @param $comment
+     * @param $table
+     */
+    public function __construct($column_name, $data_type, $notnull, $default, $auto_increment, $comment, $table)
+    {
+        $this->name = $column_name;
+        $this->type = $data_type;
+        $this->notnull = $notnull;
+        $this->default = $default;
+        $this->auto_increment = $auto_increment;
+        $this->comment = $comment;
+        $this->table = $table;
+    }
+
+    /**
+     * Get the type
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set the type
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get NOT NULL value
+     * @return mixed
+     */
+    public function getNotnull()
+    {
+        return $this->notnull;
+    }
+
+    /**
+     * Set NOT NULL value
+     * @param mixed $notnull
+     */
+    public function setNotnull($notnull)
+    {
+        $this->notnull = $notnull;
+    }
+
+    /**
+     * Get default value.
+     * @return mixed
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * Set default value
+     * @param mixed $default
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+    }
+
+    /**
+     * Get auto increment
+     * @return mixed
+     */
+    public function getAutoIncrement()
+    {
+        return $this->auto_increment;
+    }
+
+    /**
+     * Set auto increment
+     * @param mixed $auto_increment
+     */
+    public function setAutoIncrement($auto_increment)
+    {
+        $this->auto_increment = $auto_increment;
+    }
+
+    /**
+     * Get comment
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set comment
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * Get name
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set name
+     * @param $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get table
+     * @return mixed
+     */
+    public function getTable() {
+        return $this->table;
+    }
+
+    /**
+     * Get all attributes as an array
+     * @return array
+     */
+    public function getAttributes() {
+        $attributes = (array) get_object_vars($this);
+        return $attributes;
+    }
+
+    /**
+     * Check if column is a primary key
+     * @return bool
+     */
+    public function isPrimaryKey() {
+        foreach($this->getTable()->getIndices() as $index) {
+            if($index->getPrimary() && in_array($this->name, $index->getColumns()))
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Diff the column
+     * @param Column $destination_column
+     * @param Change $table_change
+     * @throws \Exception
+     */
+    public function diff(Column $destination_column, Change $table_change)
+    {
+        // Create source_column alias
+        $source_column = &$this;
+
+        // Create a parent change (because the column is altered)
+        $parent_change = $table_change->addChange($destination_column->name, 'column_altered', 'column', '');
+
+        // Get all attributes/properties of this object
+        $source_attributes = get_object_vars($this);
+
+        // Loop through source attributes
+        foreach($source_attributes as $attribute_name => $attribute_value) {
+            // If attribute is different
+            if($attribute_name != 'table' && $attribute_value != $destination_column->{$attribute_name}) {
+                $type_of_change = $attribute_name;
+                $new_value = $attribute_value;
+                // Save new attribute
+                $source_attributes[$type_of_change] = $new_value;
+                // Add change, but without SQL query (all attribute changes are combined in parent_change)
+                $parent_change->addChange($attribute_name, 'attribute_altered', 'attribute');
+            }
+        }
+
+        // Generate SQL alter query
+        $parent_change->sql = Sql::alterColumn($destination_column, $source_attributes, $table_change->name);
+
+        // Save parent change
+        $parent_change->save();
+
+        // If there are no changes, remove the parent change
+        if(!$parent_change->children()->count()) {
+            $parent_change->delete();
+        }
+    }
+}

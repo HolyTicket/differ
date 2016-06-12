@@ -1,7 +1,8 @@
 <?php
 
-// DIT IS DE OUDE DIFF, DEZE CLASS WORDT NIET MEER
-// GEBRUIKT IN DE NIEUWE DIFFERDB.
+/**
+ * THIS IS A OLD CLASS AND NOT USED ANYMORE (v1)
+ */
 
 namespace App\Services;
 
@@ -11,8 +12,16 @@ use App\Models\Change;
 
 use Auth;
 
+/**
+ * Class DiffServiceOld
+ * @package App\Services
+ */
 class DiffServiceOld extends BaseService
 {
+    /**
+     * @param $name
+     * @param $db
+     */
     public function connect($name, $db) {
         \Config::set(sprintf('database.connections.%s.host', $name), $db->host);
         \Config::set(sprintf('database.connections.%s.username', $name), $db->username);
@@ -24,14 +33,28 @@ class DiffServiceOld extends BaseService
         \DB::reconnect($name);
     }
 
+    /**
+     * @param $name
+     */
     public function purge($name) {
         \DB::purge($name);
     }
 
+    /**
+     * @param $table_name
+     * @param $column_name
+     * @param $action
+     * @return string
+     */
     public function generateId($table_name, $column_name, $action) {
         return json_encode(compact('table_name', 'column_name', 'action'));
     }
 
+    /**
+     * @param $database_one
+     * @param $database_two
+     * @return array
+     */
     public function diff($database_one, $database_two) {
         $mapping_one = [];
         $mapping_two = [];

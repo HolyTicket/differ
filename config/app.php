@@ -214,7 +214,8 @@ return [
         'Sql' => App\Facades\SqlFacade::class,
         'Connect' => App\Services\ConnectService::class,
         'Sync' => App\Facades\SyncFacade::class,
-        'StringHelper' => App\Facades\StringFacade::class
+        'StringHelper' => App\Facades\StringFacade::class,
+        'Dependency' => App\Facades\DependencyFacade::class
     ],
 
 ];

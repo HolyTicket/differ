@@ -1,0 +1,19 @@
+<?php
+namespace App\Facades;
+
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * Class SyncFacade
+ * Sync Facade for syncing the databases
+ * @package App\Facades
+ */
+class SyncFacade extends Facade {
+
+    /**
+     * @return string
+     */
+    protected static function getFacadeAccessor() {
+        return 'sync';
+    }
+}

@@ -2,106 +2,177 @@
 namespace App\Services;
 
 use App\Models\Virtual\Column;
+use App\Models\Virtual\Constraint;
 use App\Models\Virtual\Index;
 use App\Models\Virtual\Table;
 use App\Services\BaseService;
 
 use StringHelper;
 
+/**
+ * Class SqlGenerationService: creates SQL statements
+ * @package App\Services
+ */
 class SqlGenerationService extends BaseService
 {
-    private $sql = '';
-    public $all = '';
 
-    public function clear() {
-        $this->sql = '';
+    /**
+     *
+     */
+    private function removeLastChar($sql) {
+        return substr($sql, 0, -1);
     }
 
-    public function addComma() {
-        $this->sql .= ',';
-    }
-
-    public function addSemicolon() {
-        $this->sql .= ';';
-    }
-
-    public function append($line) {
-        $this->sql .= $line;
-    }
-
-    private function removeLastChar() {
-        $this->sql = substr($this->sql, 0, -1);
-    }
-
-    private function newLine() {
-        $this->sql .= "\n";
-    }
-
+    /**
+     * The table close SQL
+     * @param Table $table
+     * @return string
+     */
     private function tableClose(Table $table) {
-        $charset = explode('_', $table->collation)[0];
-        return sprintf(' CHARACTER SET %s COLLATE %s ROW_FORMAT=%s  ENGINE=%s;', $charset, $table->collation, $table->row_format, $table->engine) . "\n";
+        $charset = explode('_', $table->getCollation())[0];
+        return sprintf(' CHARACTER SET %s COLLATE %s ROW_FORMAT=%s  ENGINE=%s;', $charset, $table->getCollation(), $table->getRowFormat(), $table->getEngine()) . "\n";
     }
 
+    /**
+     * The CREATE TABLE sql
+     * @param Table $table
+     * @return string
+     */
     public function createTable(Table $table) {
-        $this->clear();
+        $sql = "";
 
-        $this->append(sprintf('CREATE TABLE IF NOT EXISTS `%s` (', $table->name));
+        $sql .= sprintf('CREATE TABLE IF NOT EXISTS `%s` (', $table->getName());
 
         foreach($table->getColumns() as $column_name => $column) {
-            $this->newLine();
-            $this->append($this->column($column, [], false, $table->getIndices()));
-            $this->addComma();
+            $sql .= "\n";
+            $sql .= $this->column($column, [], false, $table->getIndices());
+            $sql .= ",";
         }
 
         foreach($table->getIndices() as $name => $index) {
-            $this->newLine();
-            $this->append($this->addIndexImplicit($index));
-            $this->addComma();
+            $sql .= "\n";
+            $sql .= $this->addIndexImplicit($index);
+            $sql .= ",";
         }
 
-        $this->removeLastChar();
-        $this->newLine();
-        $this->append(')');
+        $sql = $this->removeLastChar($sql);
 
-        $this->append($this->tableClose(($table)));
+        $sql .= "\n";
+        $sql .= ")";
 
-        $this->newLine();
-        $this->newLine();
-        $this->newLine();
+        $sql .= $this->tableClose(($table));
 
-        $this->all .= $this->sql;
+        $sql .= "\n";
+        $sql .= "\n";
+        $sql .= "\n";
 
-        return $this->sql;
+        return $sql;
     }
 
+    /**
+     * The DROP TABLE sql
+     * @param Table $table
+     * @return string
+     */
     public function dropTable(Table $table) {
-        $this->clear();
+        $sql = '';
 
-        $this->append(sprintf('DROP TABLE `%s`', $table->name));
-        $this->addSemicolon();
-        $this->newLine();
-        return $this->sql;
+        $sql .= sprintf('DROP TABLE `%s`', $table->getName());
+        $sql .= ";";
+        $sql .= "\n";
+        return $sql;
     }
 
+    /**
+     * The SQL to add a column
+     * @param Table $table
+     * @param Column $column
+     * @return string
+     */
     public function addColumn(Table $table, Column $column) {
-        $sql = sprintf('ALTER TABLE `%s` ADD %s;', $table->name, $this->column($column)) . "\n";
+        $suffix = '';
+        if($column->getAutoIncrement()) {
+            $suffix = 'PRIMARY KEY';
+        }
+        $sql = sprintf('ALTER TABLE `%s` ADD %s %s;', $table->getName(), $this->column($column), $suffix);
+        $sql .= "\n";
         return $sql;
     }
 
+    /**
+     * Drop a column of the table SQL
+     * @param Table $table
+     * @param Column $column
+     * @return string
+     */
     public function dropColumn(Table $table, Column $column) {
-        $sql = sprintf('ALTER TABLE `%s` DROP `%s`;', $table->name, $column->name) . "\n";
+        $sql = sprintf('ALTER TABLE `%s` DROP `%s`;', $table->getName(), $column->getName());
+        $sql .= "\n";
         return $sql;
     }
 
+    /**
+     * Drop a index of the table SQL
+     * @param $table
+     * @param Index $index
+     * @return string
+     */
+    public function dropIndex($table, Index $index) {
+        if(!is_string($table)) {
+            $table_name = $table->getName();
+        } else {
+            $table_name = $table;
+        }
+        $sql = sprintf('DROP INDEX `%s` ON `%s`;', $index->getName(), $table_name);
+        $sql .= "\n";
+        return $sql;
+    }
+
+    /**
+     * Drop a constraint from the table SQL generation
+     * @param $table
+     * @param Constraint $constraint
+     * @return string
+     */
+    public function dropConstraint($table, Constraint $constraint) {
+        if(!is_string($table)) {
+            $table_name = $table->getName();
+        } else {
+            $table_name = $table;
+        }
+        $sql = sprintf('ALTER TABLE `%s` DROP FOREIGN KEY `%s`;', $table_name, $constraint->getName());
+        $sql .= "\n";
+        return $sql;
+    }
+
+    /**
+     * The SQL of a column
+     * @param Column $column
+     * @param array $attributes
+     * @param bool|false $table_name
+     * @return string
+     */
     public function column(Column $column, array $attributes = [], $table_name = false) {
         // $column is destination column.
 
         if(empty($attributes)) {
-            $attributes = (array) get_object_vars($column);
+            $attributes = $column->getAttributes();
         }
 
         $defs = [];
-        $defs['name'] = $attributes['name'];
+        if(isset($attributes['new_name'])) {
+            $defs['name'] = $attributes['name'];
+            $defs['original_name'] = $attributes['new_name'];
+        } else {
+            $defs['name'] = $attributes['name'];
+            $defs['original_name'] = $attributes['name'];
+        }
+
+        $defs['suffix'] = '';
+        if(!$column->getAutoIncrement() && $attributes['auto_increment']) {
+            $defs['suffix'] = 'PRIMARY KEY';
+        }
+
         $defs['table_name'] = $table_name;
         $defs['type'] = $attributes['type'];
         $defs['null'] = $attributes['notnull'] ? 'NOT NULL' : 'NULL';
@@ -112,41 +183,125 @@ class SqlGenerationService extends BaseService
             $defs['default'] = ' DEFAULT CURRENT_TIMESTAMP';
         } else if($attributes['default'] !== "" && $attributes['default'] != null) {
             $defs['default'] = sprintf("DEFAULT '%s'", $attributes['default']);
-        } else if($attributes['default'] == null && !$column->notnull) {
+        } else if($attributes['default'] === '') {
+            $defs['default'] = '';
+        } else if($attributes['default'] == null && !$column->getNotnull()) {
             $defs['default'] = ' DEFAULT NULL';
         } else {
             $defs['default'] = '';
         }
 
-        $sql = StringHelper::named('`%(name)s` %(type)s %(null)s %(auto_increment)s %(default)s %(comment)s', $defs);
+        $sql = StringHelper::named('`%(name)s` %(type)s %(null)s %(auto_increment)s %(suffix)s %(default)s %(comment)s', $defs);
 
         if($table_name) {
-            $prepend = StringHelper::named('ALTER TABLE `%(table_name)s` CHANGE `%(name)s`', $defs);
+            $prepend = StringHelper::named('ALTER TABLE `%(table_name)s` CHANGE `%(original_name)s`', $defs);
             $sql = $prepend . ' ' . $sql;
         }
 
         return $sql;
     }
 
-    public function alterColumn(Column $column, $type_of_change, $new_value, $old_value, $attributes, $table_name) {
+    /**
+     * Alter column SQL
+     * @param Column $column
+     * @param $type_of_change
+     * @param $new_value
+     * @param $old_value
+     * @param $attributes
+     * @param $table_name
+     * @return string
+     */
+    public function alterColumn(Column $column, $attributes, $table_name) {
         $attributes = (array) $attributes;
-        $attributes[$type_of_change] = $new_value;
 
         $column_def = $this->column($column, (array) $attributes, $table_name)  . "; \n";
 
         return $column_def;
     }
 
+    /**
+     * Rename column SQL
+     * @param Table $destination_table
+     * @param Column $column
+     * @param $new_name
+     * @return string
+     */
+    public function renameColumn(Table $destination_table, Column $column, $new_name) {
+        $attributes = $column->getAttributes();
+        $attributes['new_name'] = $new_name;
+
+        $column_def = $this->column($column, (array) $attributes, $destination_table->getName())  . "; \n";
+
+        return $column_def;
+    }
+
+    /**
+     * Rename table SQL
+     * @param Table $destination_table
+     * @param $new_name
+     * @return string
+     */
+    public function renameTable(Table $destination_table, $new_name) {
+        $old_name = $destination_table->getName();
+
+        $column_def = sprintf('RENAME TABLE `%s` TO `%s`', $new_name, $old_name)  . "; \n";
+
+        return $column_def;
+    }
+
+    /**
+     * Alter index SQL
+     * @param Column $column
+     * @param $type_of_change
+     * @param $new_value
+     * @param $old_value
+     * @param $attributes
+     * @param $table_name
+     * @return string
+     */
+    public function alterIndex(Index $source_index, Index $destination_index,  $table_name) {
+        // First drop the old index
+        $index_def = $this->dropIndex($table_name, $destination_index);
+        // Then create a new index (there's no other way in MySQL)
+        $index_def .= $this->addIndex($table_name, $source_index);
+        return $index_def;
+    }
+
+    /**
+     * Alter constraint SQL
+     * @param Constraint $source_constraint
+     * @param Constraint $destination_constraint
+     * @param $table_name
+     * @return string
+     */
+    public function alterConstraint(Constraint $source_constraint, Constraint $destination_constraint,  $table_name) {
+        // First drop the constraint
+        $sql = $this->dropConstraint($table_name, $destination_constraint);
+        // Then create a new constraint (there's no other way in MySQL)
+        $sql .= $this->addConstraint($table_name, $source_constraint);
+        return $sql;
+    }
+
+    /**
+     * Alter a table option
+     * @param Table $table
+     * @param $option
+     * @param $new_value
+     * @return string with alter sql
+     */
     public function alterOption(Table $table, $option, $new_value) {
-        $sql = '';
+        $sql = "";
         switch($option) {
             case 'collation':
                 $collation = $new_value;
                 $character_set = explode('_', $new_value)[0];
-                $sql = sprintf('ALTER TABLE `%s` CONVERT TO CHARACTER SET %s COLLATE %s;', $table->name, $character_set, $collation);
+                $sql = sprintf('ALTER TABLE `%s` CONVERT TO CHARACTER SET %s COLLATE %s;', $table->getName(), $character_set, $collation);
                 break;
             case 'row_format':
-                $sql = sprintf('ALTER TABLE `%s` ROW_FORMAT=%s;', $table->name, $new_value);
+                $sql = sprintf('ALTER TABLE `%s` ROW_FORMAT=%s;', $table->getName(), $new_value);
+                break;
+            case 'engine':
+                $sql = sprintf('ALTER TABLE `%s` ENGINE=%s;', $table->getName(), $new_value);
                 break;
         }
         $sql .= "\n";
@@ -154,33 +309,73 @@ class SqlGenerationService extends BaseService
         return $sql;
     }
 
-    public function addIndex(Table $table, Index $index) {
-        $columns = "(`".implode("`,`", $index->columns)."`)";
-
-        if($index->primary) {
-            $sql = sprintf('ALTER TABLE `%s` ADD PRIMARY KEY %s;', $table->name, $columns);
-        } elseif($index->unique) {
-            $sql = sprintf('ALTER TABLE `%s` ADD UNIQUE KEY `%s` %s;', $table->name, $index->name, $columns);
+    /**
+     * Create a ADD INDEX (unique, primary or regular) key SQL
+     * @param Table $table
+     * @param Index $index
+     * @return string with index sql
+     */
+    public function addIndex($table, Index $index) {
+        if(!is_string($table)) {
+            $table_name = $table->getName();
         } else {
-            $sql = sprintf('ALTER TABLE `%s` ADD KEY `%s` %s;', $table->name, $index->name, $columns);
+            $table_name = $table;
+        }
+
+        $columns = "(`".implode("`,`", $index->getColumns())."`)";
+
+        if($index->getPrimary()) {
+            $sql = sprintf('ALTER TABLE `%s` ADD PRIMARY KEY %s;', $table_name, $columns);
+        } elseif($index->getUnique()) {
+            $sql = sprintf('ALTER TABLE `%s` ADD UNIQUE KEY `%s` %s;', $table_name, $index->getName(), $columns);
+        } else {
+            $sql = sprintf('ALTER TABLE `%s` ADD KEY `%s` %s;', $table_name, $index->getName(), $columns);
         }
         $sql .= "\n";
 
         return $sql;
     }
 
-    public function addIndexImplicit(Index $index) {
-        $columns = "(`".implode("`,`", $index->columns)."`)";
-
-        if($index->primary) {
-            $sql = sprintf('PRIMARY KEY %s', $columns);
-        } elseif($index->unique) {
-            $sql = sprintf('UNIQUE KEY `%s` %s', $index->name, $columns);
+    /**
+     * Add constraint to table SQL
+     * @param $table
+     * @param Constraint $constraint
+     * @return string
+     */
+    public function addConstraint($table, Constraint $constraint) {
+        if(!is_string($table)) {
+            $table_name = $table->getName();
         } else {
-            $sql = sprintf('KEY `%s` %s', $index->name, $columns);
+            $table_name = $table;
         }
+
+        $local_columns = "(`".implode("`,`", $constraint->getLocalColumns())."`)";
+        $foreign_columns = "(`".implode("`,`", $constraint->getForeignColumns())."`)";
+
+        $sql = sprintf('ALTER TABLE `%s` ADD CONSTRAINT `%s` FOREIGN KEY %s REFERENCES `%s`%s ON DELETE %s ON UPDATE %s;',
+            $table_name, $constraint->getName(), $local_columns, $constraint->getForeignTableName(), $foreign_columns, $constraint->getOnDelete(), $constraint->getOnUpdate());
+
+        $sql .= "\n";
 
         return $sql;
     }
 
+    /**
+     * Add index IMPLICIT (part of CREATE TABLE) SQL.
+     * @param Index $index
+     * @return string with implicit index sql
+     */
+    public function addIndexImplicit(Index $index) {
+        $columns = "(`".implode("`,`", $index->getColumns())."`)";
+
+        if($index->getPrimary()) {
+            $sql = sprintf('PRIMARY KEY %s', $columns);
+        } elseif($index->getUnique()) {
+            $sql = sprintf('UNIQUE KEY `%s` %s', $index->getName(), $columns);
+        } else {
+            $sql = sprintf('KEY `%s` %s', $index->getName(), $columns);
+        }
+
+        return $sql;
+    }
 }

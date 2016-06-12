@@ -9,6 +9,10 @@ use App\Models\Database;
 use App\Models\Change;
 use Auth;
 
+/**
+ * Class EventServiceProvider
+ * @package App\Providers
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**

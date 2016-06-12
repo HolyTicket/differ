@@ -1,0 +1,20 @@
+<?php
+namespace App\Facades;
+
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * Class DependencyFacade
+ * The Dependency Facade
+ * @package App\Facades
+ */
+class DependencyFacade extends Facade {
+
+    /**
+     * @return string
+     */
+    protected static function getFacadeAccessor() {
+        return 'dependency';
+    }
+
+}
