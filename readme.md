@@ -17,6 +17,7 @@ Create SQL queries or execute them directly. You can also sync multiple database
 # To-Do
 - Create API for integration with Amazon CodeDeploy
 - Handle diffing of column orders
+- Create dependency system (because some queries are dependent on other queries)
 
 # Thanks
 Dick Heinhuis (coaching)

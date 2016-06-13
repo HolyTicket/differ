@@ -67,6 +67,11 @@ class DiffController extends Controller
         // Perform a dependency check (e.g. removing indexes being created before column exists)
         Dependency::check($deployment->id);
 
+        // Get parent ID
+        if($parent_id = $deployment->changes()->where('parent_id', null)->count()) {
+            $parent_id = $deployment->changes()->where('parent_id', null)->first()->id;
+        }
+
         // Create an array which stores the changes by the entity type (table, column, etc.). Used for the table structure tables
         $changes_by_entity = [];
 
@@ -84,6 +89,6 @@ class DiffController extends Controller
         $view = $deployment->changes()->count() ? 'diff.diff' : 'diff.same';
 
         // Render view and variables
-        return view($view, compact('deployment',  'changes_by_entity', 'db_one', 'deployment_id', 'db_two', 'connection_one', 'connection_two'));
+        return view($view, compact('deployment',  'changes_by_entity', 'db_one', 'deployment_id', 'db_two', 'connection_one', 'connection_two', 'parent_id'));
     }
 }

@@ -24,7 +24,7 @@
                             <th>{{ _('Change') }}</th>
                             <th align="right" style="text-align: right">{{ _('SQL-query') }}</th>
                         </tr>
-                        @foreach($deployment->changes()->where('parent_id', $deployment->changes()->first()->id)->get() as $table_name => $change)
+                        @foreach($deployment->changes()->where('parent_id', $parent_id)->orderBy('sort', 'asc')->get() as $table_name => $change)
                             <tr data-id="{{$change->id}}" class="treegrid-{{$change->id}} select">
                                 <td width="100">
                                     {{ Form::checkbox('change[]', $change->id, true) }}
@@ -46,7 +46,7 @@
                                     @endif
                                 </td>
                             </tr>
-                            @foreach($change->children()->get()->sortBy('type') as $child_change)
+                            @foreach($change->children()->orderBy('sort', 'asc')->orderBy('id', 'asc')->get() as $child_change)
                                 <tr data-id="{{$child_change->id}}" data-parent-id="{{$change->id}}" class="treegrid-{{$child_change->id}} treegrid-parent-{{$change->id}} select">
                                     <td width="100">
                                         @if(!$child_change->disable)

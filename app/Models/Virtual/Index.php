@@ -145,7 +145,7 @@ class Index
             // If the attributes are not the same
             if($attribute_value != $destination_index->{$attribute_name}) {
                 // Create the SQL and add the change
-                $parent_change->addChange($attribute_name, 'attribute_altered', 'attribute', Sql::alterIndex($this, $destination_index, $table_change->name));
+                $parent_change->addChange($attribute_name, 'attribute_altered', 'attribute_index', Sql::alterIndex($this, $destination_index, $table_change->name));
             }
         }
 

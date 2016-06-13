@@ -21,13 +21,14 @@ class Table
      */
     private $name;
     /**
-     * @var string $engine Engine of the table
-     */
-    private $engine;
-    /**
      * @var string $row_format Row Format of the table
      */
     private $row_format;
+
+    /**
+     * @var string $engine Engine of the table
+     */
+    private $engine;
     /**
      * @var string $collation Collation of the table
      */

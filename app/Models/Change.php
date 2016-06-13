@@ -46,6 +46,16 @@ class Change extends Eloquent
             $dependency = json_encode($dependency);
         }
         $change->dependency = $dependency;
+
+        $order = config('diff.order');
+        $pos = array_search($change->type, $order);
+
+        $change->sort = $pos;
+
+//        if($type == 'attribute_altered' && $entity == 'attribute_index' && $name == 'columns') {
+//            dd($this);
+//        }
+
         $this->children()->save($change);
         return $change;
     }

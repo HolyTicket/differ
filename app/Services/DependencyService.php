@@ -34,8 +34,10 @@ class DependencyService extends BaseService
                 $parent = $change->parent()->first();
                 $parent_id = $parent->parent_id;
                 $c = Change::where(['deploy_id' => $deploy_id, 'entity' => 'index', 'type' => 'index_added', 'name' => 'PRIMARY', 'parent_id' => $parent_id])->first();
-                $c->disable = 1;
-                $c->save();
+                if($c) {
+                    $c->disable = 1;
+                    $c->save();
+                }
             }
         }
 

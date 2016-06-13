@@ -169,7 +169,7 @@ class SqlGenerationService extends BaseService
         }
 
         $defs['suffix'] = '';
-        if(!$column->getAutoIncrement() && $attributes['auto_increment']) {
+        if(!$column->getAutoIncrement() && $attributes['auto_increment'] && !$column->isPrimaryKey()) {
             $defs['suffix'] = 'PRIMARY KEY';
         }
 
@@ -260,10 +260,24 @@ class SqlGenerationService extends BaseService
      * @return string
      */
     public function alterIndex(Index $source_index, Index $destination_index,  $table_name) {
-        // First drop the old index
-        $index_def = $this->dropIndex($table_name, $destination_index);
-        // Then create a new index (there's no other way in MySQL)
-        $index_def .= $this->addIndex($table_name, $source_index);
+
+        $columns = "(`".implode("`,`", $source_index->getColumns())."`)";
+
+        if($source_index->getPrimary()) {
+            $sql = sprintf('ALTER TABLE `%s` DROP PRIMARY KEY,  ADD PRIMARY KEY %s;', $table_name, $columns);
+        } elseif($source_index->getUnique()) {
+            $sql = sprintf('ALTER TABLE `%s` DROP INDEX `%s`, ADD UNIQUE KEY `%s` %s;', $table_name, $destination_index->getName(), $source_index->getName(), $columns);
+        } else {
+            $sql = sprintf('ALTER TABLE `%s` DROP INDEX `%s`,  ADD INDEX `%s`%s;', $table_name, $destination_index->getName(), $source_index->getName(), $columns);
+        }
+        $sql .= "\n";
+
+        return $sql;
+//
+//        // First drop the old index
+//        $index_def = $this->dropIndex($table_name, $destination_index);
+//        // Then create a new index (there's no other way in MySQL)
+//        $index_def .= $this->addIndex($table_name, $source_index);
         return $index_def;
     }
 

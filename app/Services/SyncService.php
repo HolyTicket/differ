@@ -23,7 +23,8 @@ class SyncService extends BaseService
      */
     public function generateSql(array $changes_list) {
         // Get all sql
-        $changes = Change::whereIn('id', $changes_list)->get()->sortBy('type');
+        $changes = Change::whereIn('id', $changes_list)->orderBy('sort', 'asc')->get();
+
 
         // Add a custom header
         $sql = '
@@ -35,6 +36,11 @@ class SyncService extends BaseService
         // Loop the changes and append them
         foreach($changes as $change) {
             $sql .= $change->sql;
+            if($change->entity == 'index') {
+                foreach($change->children()->get() as $child) {
+                    $sql .= $child->sql;
+                }
+            }
         }
 
         return $sql;
